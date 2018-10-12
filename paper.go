@@ -15,6 +15,31 @@ type PaperProcessor struct {
 	TargetDirectory string
 }
 
+// Generic helpers
+
+func fetchResource(url string, filename string) error {
+
+	// if it already exists, don't fetch it again
+	if _, err := os.Stat(filename); err == nil {
+		return nil
+	}
+
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	resp, resp_err := http.Get(url)
+	if resp_err != nil {
+		return resp_err
+	}
+	defer resp.Body.Close()
+
+	_, copy_err := io.Copy(f, resp.Body)
+	return copy_err
+}
+
 
 // Computed properties
 
@@ -30,6 +55,10 @@ func (processor PaperProcessor) targetHTMLFileName() string {
 	return path.Join(processor.folderName(), "paper.html")
 }
 
+func (processor PaperProcessor) targetSupplementaryArchiveFileName() string {
+	return path.Join(processor.folderName(), "supplementary.zip")
+}
+
 
 // Side effect heavy functions
 
@@ -38,26 +67,11 @@ func (processor PaperProcessor) createFolderIfRequired() error {
 }
 
 func (processor PaperProcessor) fetchPaperTextToDisk() error {
+	return fetchResource(processor.Paper.FullTextURL(), processor.targetXMLFileName())
+}
 
-	// if it already exists, don't fetch it again
-	if _, err := os.Stat(processor.targetXMLFileName()); err == nil {
-		return nil
-	}
-
-	f, err := os.Create(processor.targetXMLFileName())
-	if err != nil {
-		return err
-	}
-	defer f.Close()
-
-	resp, resp_err := http.Get(processor.Paper.FullTextURL())
-	if resp_err != nil {
-		return resp_err
-	}
-	defer resp.Body.Close()
-
-	_, copy_err := io.Copy(f, resp.Body)
-	return copy_err
+func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
+	return fetchResource(processor.Paper.SupplementaryFilesURL(), processor.targetSupplementaryArchiveFileName())
 }
 
 func (processor PaperProcessor) processXMLToHTML() error {
@@ -104,6 +118,11 @@ func (processor PaperProcessor) ProcessPaper() error {
 	}
 
 	err = processor.fetchPaperTextToDisk()
+	if err != nil {
+		return err
+	}
+
+	err = processor.fetchPaperSupplementaryFilesToDisk()
 	if err != nil {
 		return err
 	}
