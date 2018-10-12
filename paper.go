@@ -3,8 +3,8 @@
 package main
 
 import (
+	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -15,6 +15,21 @@ type PaperProcessor struct {
 	Paper           Paper
 	TargetDirectory string
 }
+
+const HTMLHeader string = `{{headertemplate
+| title = %s
+| publication_date = %s
+| initial_author_first = %s
+| initial_author_last = %s
+| license = %s
+| wikiedata = %s
+| main_subject = %s
+| DOI =
+| PubMed_ID =
+| PMC_ID =
+}}
+`
+
 
 // Generic helpers
 
@@ -75,13 +90,31 @@ func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
 	return fetchResource(processor.Paper.SupplementaryFilesURL(), processor.targetSupplementaryArchiveFileName())
 }
 
-func (processor PaperProcessor) processXMLToHTML() error {
+func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) error {
 
 	f, err := os.Create(processor.targetHTMLFileName())
 	if err != nil {
 		return err
 	}
 	defer f.Close()
+
+	firstName := ""
+	surname := ""
+	if FirstAuthor != nil {
+		surname = FirstAuthor.Surname
+		firstName = FirstAuthor.GivenNames // TODO!
+	}
+
+	header := fmt.Sprintf(HTMLHeader,
+		processor.Paper.Title.Value,
+		processor.Paper.Date.Value,
+		firstName, surname,
+		processor.Paper.LicenseLabel.Value,
+		processor.Paper.ItemLabel.Value,
+		processor.Paper.MainSubjectLabel.Value,
+	)
+
+	f.Write([]byte(header))
 
 	cmd := exec.Cmd{
 		Path: "/usr/bin/xsltproc",
@@ -104,6 +137,9 @@ func (processor PaperProcessor) processXMLToHTML() error {
 	if err := cmd.Wait(); err != nil {
 		return err
 	}
+
+	// write the footer
+	f.Write([]byte("{{footertemplate}}\n"))
 
 	return nil
 }
@@ -132,10 +168,8 @@ func (processor PaperProcessor) ProcessPaper() error {
 	if xml_err != nil {
 		return xml_err
 	}
-	log.Printf("title: %s", openXMLdoc.Title())
-	log.Printf("First author: %v", openXMLdoc.FirstAuthor())
 
-	err = processor.processXMLToHTML()
+	err = processor.processXMLToHTML(openXMLdoc.FirstAuthor())
 	if err != nil {
 		return err
 	}

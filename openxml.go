@@ -35,7 +35,7 @@ type JournalMeta struct {
 type ArticleMeta struct {
 	XMLName xml.Name `xml:"article-meta"`
 	TitleGroup TitleGroup `xml:"title-group"`
-	ContributorGroup ContribGroup `xml:"contrib-group"`
+	ContributorGroups []ContribGroup `xml:"contrib-group"`
 }
 
 type Front struct {
@@ -81,9 +81,12 @@ func (paper OpenXMLPaper) Title() string {
 }
 
 func (paper OpenXMLPaper) FirstAuthor() *ContributorName {
-	author_list := paper.Front.ArticleMeta.ContributorGroup.Contributors
-	if len(author_list) > 0 {
-		return &(author_list[0].Name)
+	contrib_groups := paper.Front.ArticleMeta.ContributorGroups
+	if len(contrib_groups) > 0 {
+		author_list := contrib_groups[0].Contributors
+		if len(author_list) > 0 {
+			return &(author_list[0].Name)
+		}
 	}
 	return nil
 }

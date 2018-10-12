@@ -71,5 +71,4 @@ func (paper Paper) FullTextURL() string {
 
 func (paper Paper) SupplementaryFilesURL() string {
 	return fmt.Sprintf("%s/PMC%s/supplementaryFiles", PMCAPIURL, paper.ID())
-
 }
