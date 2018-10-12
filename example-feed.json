@@ -1,0 +1,4018 @@
+{
+    "head": {
+        "vars": [
+            "item",
+            "itemLabel",
+            "pmcid",
+            "journalLabel",
+            "title",
+            "date",
+            "licenseLabel",
+            "mainsubjectLabel"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474713"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Functional analysis of the cathepsin-like cysteine protease genes in adult Brugia malayi using RNA interference",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2634747"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Functional analysis of the cathepsin-like cysteine protease genes in adult Brugia malayi using RNA interference",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092291"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Molecular basis of rare aminoglycoside susceptibility and pathogenesis of Burkholderia pseudomallei clinical isolates from Thailand",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2737630"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Molecular basis of rare aminoglycoside susceptibility and pathogenesis of Burkholderia pseudomallei clinical isolates from Thailand",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144535"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Feasibility of onchocerciasis elimination with ivermectin treatment in endemic foci in Africa: first evidence from studies in Mali and Senegal",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2710500"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Feasibility of onchocerciasis elimination with ivermectin treatment in endemic foci in Africa: first evidence from studies in Mali and Senegal",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-19T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28472552"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Control of visceral leishmaniasis in latin america-a systematic review",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2808217"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Control of visceral leishmaniasis in latin america-a systematic review",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-04-27T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473775"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A non mouse-adapted dengue virus strain as a new model of severe dengue infection in AG129 mice",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2860513"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A non mouse-adapted dengue virus strain as a new model of severe dengue infection in AG129 mice",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2013-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144487"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A single multilocus sequence typing (MLST) scheme for seven pathogenic Leptospira species",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3554523"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A single multilocus sequence typing (MLST) scheme for seven pathogenic Leptospira species",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-03-16T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473212"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "High dengue case capture rate in four years of a cohort study in Nicaragua compared to national surveillance data",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2838781"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "High dengue case capture rate in four years of a cohort study in Nicaragua compared to national surveillance data",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092296"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Neglected tropical diseases in sub-saharan Africa: review of their prevalence, distribution, and disease burden",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2727001"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Neglected tropical diseases in sub-saharan Africa: review of their prevalence, distribution, and disease burden",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-07-27T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474926"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Development and validation of a quantitative, high-throughput, fluorescent-based bioassay to detect schistosoma viability",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2910722"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Development and validation of a quantitative, high-throughput, fluorescent-based bioassay to detect schistosoma viability",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-16T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28472111"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Interspecific hybridization yields strategy for South Pacific filariasis vector elimination",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2217672"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Interspecific hybridization yields strategy for South Pacific filariasis vector elimination",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092278"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Estimating and mapping the population at risk of sleeping sickness",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3493382"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Estimating and mapping the population at risk of sleeping sickness",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-07-14T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475720"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The heme biosynthetic pathway of the obligate Wolbachia endosymbiont of Brugia malayi as a potential anti-filarial drug target",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2703803"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The heme biosynthetic pathway of the obligate Wolbachia endosymbiont of Brugia malayi as a potential anti-filarial drug target",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473776"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Tribendimidine and albendazole for treating soil-transmitted helminths, Strongyloides stercoralis and Taenia spp.: open-label randomized trial",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2561005"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Tribendimidine and albendazole for treating soil-transmitted helminths, Strongyloides stercoralis and Taenia spp.: open-label randomized trial",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562256"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: intervention for control and elimination",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3335868"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: intervention for control and elimination",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2015-09-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144770"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Global Morbidity and Mortality of Leptospirosis: A Systematic Review",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "4574773"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Global Morbidity and Mortality of Leptospirosis: A Systematic Review",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2011-10-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28251886"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Congenital Chagas disease: recommendations for diagnosis, treatment and control of newborns, siblings and pregnant women",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3201907"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Congenital Chagas disease: recommendations for diagnosis, treatment and control of newborns, siblings and pregnant women",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144539"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Japanese encephalitis-a pathological and clinical perspective",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2745699"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Japanese encephalitis-a pathological and clinical perspective",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2011-08-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476579"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Inflammatory cytokine expression is associated with chikungunya virus resolution and symptom severity",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3156690"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Inflammatory cytokine expression is associated with chikungunya virus resolution and symptom severity",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q24290756"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Five-year longitudinal assessment of the downstream impact on schistosomiasis transmission following closure of the Three Gorges Dam",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3323517"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Five-year longitudinal assessment of the downstream impact on schistosomiasis transmission following closure of the Three Gorges Dam",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-08-10T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475036"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A randomized controlled trial of chloroquine for the treatment of dengue in Vietnamese adults",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2919376"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A randomized controlled trial of chloroquine for the treatment of dengue in Vietnamese adults",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144523"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Arboviral etiologies of acute febrile illnesses in Western South America, 2000-2007",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2919378"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Arboviral etiologies of acute febrile illnesses in Western South America, 2000-2007",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473943"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Diagnosis of soil-transmitted helminths in the era of preventive chemotherapy: effect of multiple stool sampling and use of different diagnostic techniques",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2570799"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Diagnosis of soil-transmitted helminths in the era of preventive chemotherapy: effect of multiple stool sampling and use of different diagnostic techniques",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092299"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The global programme to eliminate lymphatic filariasis: health impact after 8 years",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2556399"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The global programme to eliminate lymphatic filariasis: health impact after 8 years",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2011-05-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144508"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Using web search query data to monitor dengue epidemics: a new model for neglected tropical disease surveillance",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3104029"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Using web search query data to monitor dengue epidemics: a new model for neglected tropical disease surveillance",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144550"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Hookworm-related anaemia among pregnant women: a systematic review",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2553481"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Hookworm-related anaemia among pregnant women: a systematic review",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-11-30T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476399"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Metabolomics to unveil and understand phenotypic diversity between pathogen populations",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2994915"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Metabolomics to unveil and understand phenotypic diversity between pathogen populations",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-10-27T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476335"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Integrated mapping of neglected tropical diseases: epidemiological findings and control implications for northern Bahr-el-Ghazal State, Southern Sudan",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2761732"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Integrated mapping of neglected tropical diseases: epidemiological findings and control implications for northern Bahr-el-Ghazal State, Southern Sudan",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092311"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Controlling soil-transmitted helminthiasis in pre-school-age children through preventive chemotherapy",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2274864"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Controlling soil-transmitted helminthiasis in pre-school-age children through preventive chemotherapy",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-12-07T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476451"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Focus-specific clinical profiles in human African Trypanosomiasis caused by Trypanosoma brucei rhodesiense",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2998431"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Focus-specific clinical profiles in human African Trypanosomiasis caused by Trypanosoma brucei rhodesiense",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21090124"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Impact of environment and social gradient on Leptospira infection in urban slums",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "Creative Commons Attribution",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2292260"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Impact of environment and social gradient on Leptospira infection in urban slums",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144551"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Of mice, cattle, and humans: the immunology and treatment of river blindness",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2323618"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Of mice, cattle, and humans: the immunology and treatment of river blindness",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-02-09T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28472805"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Temporal expression of chemokines dictates the hepatic inflammatory infiltrate in a murine model of schistosomiasis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2817718"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Temporal expression of chemokines dictates the hepatic inflammatory infiltrate in a murine model of schistosomiasis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-03-26T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28273898"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Asymmetries of poverty: why global burden of disease valuations underestimate the burden of neglected tropical diseases",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2267491"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Asymmetries of poverty: why global burden of disease valuations underestimate the burden of neglected tropical diseases",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-08-24T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475269"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Novel naphthalene-based inhibitors of Trypanosoma brucei RNA editing ligase 1",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2927429"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Novel naphthalene-based inhibitors of Trypanosoma brucei RNA editing ligase 1",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-08-03T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475012"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Screening mosquito house entry points as a potential method for integrated control of endophagic filariasis, arbovirus and malaria vectors",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2914752"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Screening mosquito house entry points as a potential method for integrated control of endophagic filariasis, arbovirus and malaria vectors",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144548"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Leishmania-induced IRAK-1 inactivation is mediated by SHP-1 interacting with an evolutionarily conserved KTIM motif",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "Creative Commons Attribution",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2596967"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Leishmania-induced IRAK-1 inactivation is mediated by SHP-1 interacting with an evolutionarily conserved KTIM motif",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2007-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144557"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Measuring the burden of neglected tropical diseases: the global burden of disease framework",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2100367"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Measuring the burden of neglected tropical diseases: the global burden of disease framework",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144547"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Neglected infections of poverty in the United States of America",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2430531"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Neglected infections of poverty in the United States of America",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562255"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Soil-transmitted helminth reinfection after drug treatment: a systematic review and meta-analysis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3348161"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Soil-transmitted helminth reinfection after drug treatment: a systematic review and meta-analysis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144498"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: the problem of helminthiases",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3335854"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: the problem of helminthiases",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-10-26T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476305"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Helminth genomics: The implications for human health",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2757907"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Helminth genomics: The implications for human health",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475320"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Accurate real-time PCR strategy for monitoring bloodstream parasitic loads in chagas disease patients",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2667272"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Accurate real-time PCR strategy for monitoring bloodstream parasitic loads in chagas disease patients",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144517"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Fexinidazole--a new oral nitroimidazole drug candidate entering clinical development for the treatment of sleeping sickness",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3006138"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Fexinidazole--a new oral nitroimidazole drug candidate entering clinical development for the treatment of sleeping sickness",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2015-04-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21090117"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Estimating the global burden of endemic canine rabies",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "4400070"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Estimating the global burden of endemic canine rabies",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-06-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474138"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Lymphatic filariasis control in Tanzania: effect of repeated mass drug administration with ivermectin and albendazole on infection and transmission",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2879369"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Lymphatic filariasis control in Tanzania: effect of repeated mass drug administration with ivermectin and albendazole on infection and transmission",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-07-13T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474813"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "In vitro and in vivo high-throughput assays for the testing of anti-Trypanosoma cruzi compounds",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2903469"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "In vitro and in vivo high-throughput assays for the testing of anti-Trypanosoma cruzi compounds",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2014-07-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562285"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Wolbachia enhances West Nile virus (WNV) infection in the mosquito Culex tarsalis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "4091933"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Wolbachia enhances West Nile virus (WNV) infection in the mosquito Culex tarsalis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-07-14T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475723"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Local suppression of T cell responses by arginase-induced L-arginine depletion in nonhealing leishmaniasis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2703824"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Local suppression of T cell responses by arginase-induced L-arginine depletion in nonhealing leishmaniasis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-06-15T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474448"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "New assembly, reannotation and analysis of the Entamoeba histolytica genome reveal new genomic features and protein content information",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2886108"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "New assembly, reannotation and analysis of the Entamoeba histolytica genome reveal new genomic features and protein content information",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475159"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Brugia malayi excreted/secreted proteins at the host/parasite interface: stage- and gender-specific proteomic profiling",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2659452"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Brugia malayi excreted/secreted proteins at the host/parasite interface: stage- and gender-specific proteomic profiling",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144545"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Phylogeography and genetic variation of Triatoma dimidiata, the main Chagas disease vector in Central America, and its position within the genus Triatoma",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2330091"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Phylogeography and genetic variation of Triatoma dimidiata, the main Chagas disease vector in Central America, and its position within the genus Triatoma",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144525"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The international limits and population at risk of Plasmodium vivax transmission in 2009",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2914753"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The international limits and population at risk of Plasmodium vivax transmission in 2009",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-11-16T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476171"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A novel high throughput assay for anthelmintic drug screening and resistance diagnosis by real-time monitoring of parasite motility",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2982823"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A novel high throughput assay for anthelmintic drug screening and resistance diagnosis by real-time monitoring of parasite motility",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-04-06T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473572"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A systems-based analysis of Plasmodium vivax lifecycle transcription from human to mosquito",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2850316"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A systems-based analysis of Plasmodium vivax lifecycle transcription from human to mosquito",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144552"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Social exclusion modifies climate and deforestation impacts on a vector-borne disease",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2238711"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Social exclusion modifies climate and deforestation impacts on a vector-borne disease",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21090125"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Loop-mediated isothermal amplification (LAMP) method for rapid detection of Trypanosoma brucei rhodesiense",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2238707"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Loop-mediated isothermal amplification (LAMP) method for rapid detection of Trypanosoma brucei rhodesiense",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-06-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474146"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The economic benefits resulting from the first 8 years of the Global Programme to Eliminate Lymphatic Filariasis (2000-2007)",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2879371"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The economic benefits resulting from the first 8 years of the Global Programme to Eliminate Lymphatic Filariasis (2000-2007)",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092288"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Unlocking the transcriptomes of two carcinogenic parasites, Clonorchis sinensis and Opisthorchis viverrini",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2889816"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Unlocking the transcriptomes of two carcinogenic parasites, Clonorchis sinensis and Opisthorchis viverrini",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-11-23T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476209"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Observed reductions in Schistosoma mansoni transmission from large-scale administration of praziquantel in Uganda: a mathematical modelling study",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2990705"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Observed reductions in Schistosoma mansoni transmission from large-scale administration of praziquantel in Uganda: a mathematical modelling study",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144522"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Identification of attractive drug targets in neglected-disease pathogens using an in silico approach",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2927427"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Identification of attractive drug targets in neglected-disease pathogens using an in silico approach",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144502"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Chagas disease: \"the new HIV/AIDS of the Americas\"",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3362306"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Chagas disease: \"the new HIV/AIDS of the Americas\"",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-07-07T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475694"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Feasibility, drug safety, and effectiveness of etiological treatment programs for Chagas disease in Honduras, Guatemala, and Bolivia: 10-year experience of M\u00e9decins Sans Fronti\u00e8res",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2700957"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Feasibility, drug safety, and effectiveness of etiological treatment programs for Chagas disease in Honduras, Guatemala, and Bolivia: 10-year experience of M\u00e9decins Sans Fronti\u00e8res",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474353"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Mefloquine--an aminoalcohol with promising antischistosomal properties in mice",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2600813"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Mefloquine--an aminoalcohol with promising antischistosomal properties in mice",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-11-16T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28476176"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Best practices in dengue surveillance: a report from the Asia-Pacific and Americas Dengue Prevention Boards",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2982842"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Best practices in dengue surveillance: a report from the Asia-Pacific and Americas Dengue Prevention Boards",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474163"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The impact of repeated rounds of mass drug administration with diethylcarbamazine plus albendazole on bancroftian filariasis in Papua New Guinea",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2586652"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The impact of repeated rounds of mass drug administration with diethylcarbamazine plus albendazole on bancroftian filariasis in Papua New Guinea",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144495"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A long neglected world malaria map: Plasmodium vivax endemicity in 2010",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3435256"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A long neglected world malaria map: Plasmodium vivax endemicity in 2010",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562257"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: towards control and elimination",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3335858"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A research agenda for helminth diseases of humans: towards control and elimination",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092287"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "The global burden of alveolar echinococcosis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2889826"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "The global burden of alveolar echinococcosis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144504"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Whole genome sequences of three Treponema pallidum ssp. pertenue strains: yaws and syphilis treponemes differ in less than 0.2% of the genome sequence",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3265458"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Whole genome sequences of three Treponema pallidum ssp. pertenue strains: yaws and syphilis treponemes differ in less than 0.2% of the genome sequence",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2011-06-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144510"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "SCYX-7158, an orally-active benzoxaborole for the treatment of stage 2 human African trypanosomiasis",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3125149"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "SCYX-7158, an orally-active benzoxaborole for the treatment of stage 2 human African trypanosomiasis",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144503"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Genetic characterization of Zika virus strains: geographic expansion of the Asian lineage",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC0",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3289602"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Genetic characterization of Zika virus strains: geographic expansion of the Asian lineage",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144526"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Mycobacterium africanum--review of an important cause of human tuberculosis in West Africa",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2946903"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Mycobacterium africanum--review of an important cause of human tuberculosis in West Africa",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092307"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "First cultivation and characterization of Mycobacterium ulcerans from the environment",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2268003"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "First cultivation and characterization of Mycobacterium ulcerans from the environment",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092276"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "An in-depth analysis of a piece of shit: distribution of Schistosoma mansoni and hookworm eggs in human stool",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3527364"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "An in-depth analysis of a piece of shit: distribution of Schistosoma mansoni and hookworm eggs in human stool",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-05-11T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473882"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Massively parallel sequencing and analysis of the Necator americanus transcriptome",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2867931"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Massively parallel sequencing and analysis of the Necator americanus transcriptome",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-10-08T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473737"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "High throughput selection of effective serodiagnostics for Trypanosoma cruzi infection",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2556098"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "High throughput selection of effective serodiagnostics for Trypanosoma cruzi infection",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562274"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Stigma and the social burden of neglected tropical diseases",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2359851"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Stigma and the social burden of neglected tropical diseases",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144554"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "On the origin of the treponematoses: a phylogenetic approach",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2217670"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "On the origin of the treponematoses: a phylogenetic approach",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-11-03T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28471672"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Anti-schistosomal intervention targets identified by lifecycle transcriptomic analyses",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2764848"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Anti-schistosomal intervention targets identified by lifecycle transcriptomic analyses",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-07-27T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474923"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Asymmetric Wolbachia segregation during early Brugia malayi embryogenesis determines its distribution in adult host tissues",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2910707"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Asymmetric Wolbachia segregation during early Brugia malayi embryogenesis determines its distribution in adult host tissues",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092297"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A novel biological activity of praziquantel requiring voltage-operated Ca2+ channel beta subunits: subversion of flatworm regenerative polarity",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2694594"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A novel biological activity of praziquantel requiring voltage-operated Ca2+ channel beta subunits: subversion of flatworm regenerative polarity",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21090124"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Impact of environment and social gradient on Leptospira infection in urban slums",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2292260"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Impact of environment and social gradient on Leptospira infection in urban slums",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-08-25T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475996"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Advancing drug innovation for neglected diseases-criteria for lead progression",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2727960"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Advancing drug innovation for neglected diseases-criteria for lead progression",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-07-21T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475768"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Bioluminescent imaging of Trypanosoma brucei shows preferential testis dissemination which may hamper drug efficacy in sleeping sickness",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2707598"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Bioluminescent imaging of Trypanosoma brucei shows preferential testis dissemination which may hamper drug efficacy in sleeping sickness",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092289"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Influence of exposure history on the immunology and development of resistance to human Schistosomiasis mansoni",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2843635"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Influence of exposure history on the immunology and development of resistance to human Schistosomiasis mansoni",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-02-09T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28472811"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Transcriptional changes in Schistosoma mansoni during early schistosomula development and in the presence of erythrocytes",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2817720"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Transcriptional changes in Schistosoma mansoni during early schistosomula development and in the presence of erythrocytes",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144548"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Leishmania-induced IRAK-1 inactivation is mediated by SHP-1 interacting with an evolutionarily conserved KTIM motif",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2596967"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Leishmania-induced IRAK-1 inactivation is mediated by SHP-1 interacting with an evolutionarily conserved KTIM motif",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-09-07T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475431"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Cost-effectiveness analysis of combination therapies for visceral leishmaniasis in the Indian subcontinent",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2935395"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Cost-effectiveness analysis of combination therapies for visceral leishmaniasis in the Indian subcontinent",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092298"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Africa's 32 cents solution for HIV/AIDS",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2682705"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Africa's 32 cents solution for HIV/AIDS",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-07-09T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473071"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Development of functional genomic tools in trematodes: RNA interference and luciferase reporter gene activity in Fasciola hepatica",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2440534"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Development of functional genomic tools in trematodes: RNA interference and luciferase reporter gene activity in Fasciola hepatica",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2009-08-18T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475935"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Reduced susceptibility to praziquantel among naturally occurring Kenyan isolates of Schistosoma mansoni",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2721635"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Reduced susceptibility to praziquantel among naturally occurring Kenyan isolates of Schistosoma mansoni",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2012-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144505"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "A systematically improved high quality genome and transcriptome of the human blood fluke Schistosoma mansoni",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3254664"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "A systematically improved high quality genome and transcriptome of the human blood fluke Schistosoma mansoni",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2013-11-21T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21562238"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "NTDs V.2.0: \"blue marble health\"--neglected tropical disease control and elimination in a shifting health policy landscape.",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3836998"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "NTDs V.2.0: \"blue marble health\"--neglected tropical disease control and elimination in a shifting health policy landscape.",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-05-25T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28474074"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "NECT is next: implementing the new drug combination therapy for Trypanosoma brucei gambiense sleeping sickness",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2876135"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "NECT is next: implementing the new drug combination therapy for Trypanosoma brucei gambiense sleeping sickness",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2013-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21092274"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Economic and disease burden of dengue in Southeast Asia",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3578748"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Economic and disease burden of dengue in Southeast Asia",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-01-02T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28472122"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Quantitative high-throughput screen identifies inhibitors of the Schistosoma mansoni redox cascade",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2217675"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Quantitative high-throughput screen identifies inhibitors of the Schistosoma mansoni redox cascade",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-09-14T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28475501"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Analysis of complex patterns of human exposure and immunity to Schistosomiasis mansoni: the influence of age, sex, ethnicity and IgE",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2939029"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Analysis of complex patterns of human exposure and immunity to Schistosomiasis mansoni: the influence of age, sex, ethnicity and IgE",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2008-04-02T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144549"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Human leptospirosis caused by a new, antigenically unique Leptospira associated with a Rattus species reservoir in the Peruvian Amazon.",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2271056"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Human leptospirosis caused by a new, antigenically unique Leptospira associated with a Rattus species reservoir in the Peruvian Amazon.",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-05-04T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q28473835"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Antileishmanial high-throughput drug screening reveals drug candidates with new scaffolds",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "2864270"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Antileishmanial high-throughput drug screening reveals drug candidates with new scaffolds",
+                    "xml:lang": "en"
+                }
+            },
+            {
+                "date": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+                    "type": "literal",
+                    "value": "2010-01-01T00:00:00Z"
+                },
+                "item": {
+                    "type": "uri",
+                    "value": "http://www.wikidata.org/entity/Q21144518"
+                },
+                "itemLabel": {
+                    "type": "literal",
+                    "value": "Ecology and transmission of Buruli ulcer disease: a systematic review",
+                    "xml:lang": "en"
+                },
+                "journalLabel": {
+                    "type": "literal",
+                    "value": "PLOS Neglected Tropical Diseases",
+                    "xml:lang": "en"
+                },
+                "licenseLabel": {
+                    "type": "literal",
+                    "value": "CC BY 2.5",
+                    "xml:lang": "en"
+                },
+                "mainsubjectLabel": {
+                    "type": "literal",
+                    "value": "infectious disease",
+                    "xml:lang": "en"
+                },
+                "pmcid": {
+                    "type": "literal",
+                    "value": "3001905"
+                },
+                "title": {
+                    "type": "literal",
+                    "value": "Ecology and transmission of Buruli ulcer disease: a systematic review",
+                    "xml:lang": "en"
+                }
+            }
+        ]
+    }
+}
