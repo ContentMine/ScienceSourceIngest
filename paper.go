@@ -4,6 +4,7 @@ package main
 
 import (
 	"io"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -126,6 +127,13 @@ func (processor PaperProcessor) ProcessPaper() error {
 	if err != nil {
 		return err
 	}
+
+	openXMLdoc, xml_err := LoadPaperXMLFromFile(processor.targetXMLFileName())
+	if xml_err != nil {
+		return xml_err
+	}
+	log.Printf("title: %s", openXMLdoc.Title())
+	log.Printf("First author: %v", openXMLdoc.FirstAuthor())
 
 	err = processor.processXMLToHTML()
 	if err != nil {
