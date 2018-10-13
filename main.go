@@ -32,7 +32,16 @@ func main() {
 		panic(err)
 	}
 
-	log.Printf("We have %d papers to process", len(feed.Results.Papers))
+	// the SPARQL seems to have duplicates in, so let's check
+	library := make(map[string]Paper)
+	for _, paper := range feed.Results.Papers[0:10] {
+	    if _, prs := library[paper.ID()]; prs == true {
+	        log.Printf("Found a duplicate paper: %v", paper.ID())
+	    } else {
+    	    library[paper.ID()] = paper
+    	}
+	}
+	log.Printf("We have %d papers to process", len(library))
 
     // Here I use a traditional wait group to wait for everyone to be done,
     // and I use a channel to control the number of concurrent operations allowed.
@@ -41,25 +50,25 @@ func main() {
     // the sake of code clarity
     var wg sync.WaitGroup
 	sem := make(chan bool, concurrencyLimit)
-	for _, paper := range feed.Results.Papers {
+	for _, paper := range library {
+		to_process := paper
+
 		sem <- true
 		wg.Add(1)
+
 		go func() {
             defer func() {
                 wg.Done()
                 <-sem
             }()
-            log.Printf("Process paper %s", paper.ID())
+            log.Printf("Process paper %s", to_process.ID())
 
-			var processor = PaperProcessor{Paper: paper, TargetDirectory: target_path}
+			var processor = PaperProcessor{Paper: to_process, TargetDirectory: target_path}
 			err := processor.ProcessPaper()
 			if err != nil {
-				log.Printf("Failed to process paper %s: %v", paper.ID(), err)
+				log.Printf("Failed to process paper %s: %v", to_process.ID(), err)
 			}
 		}()
-
-		// just process one whilst testing...
-		break
 	}
 	wg.Wait()
 }
