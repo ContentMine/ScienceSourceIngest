@@ -9,7 +9,7 @@ import (
 )
 
 type ContributorName struct {
-	Surname string `xml:"surname"`
+	Surname    string `xml:"surname"`
 	GivenNames string `xml:"given-names"`
 }
 
@@ -18,14 +18,14 @@ type Contributor struct {
 }
 
 type ContribGroup struct {
-	XMLName xml.Name `xml:"contrib-group"`
+	XMLName      xml.Name      `xml:"contrib-group"`
 	Contributors []Contributor `xml:"contrib"`
 }
 
 type TitleGroup struct {
-	XMLName xml.Name `xml:"title-group"`
-	ArticleTitle string `xml:"article-title"`
-	AlternativeTitle string `xml:"alt-title"`
+	XMLName          xml.Name `xml:"title-group"`
+	ArticleTitle     string   `xml:"article-title"`
+	AlternativeTitle string   `xml:"alt-title"`
 }
 
 type JournalMeta struct {
@@ -33,23 +33,21 @@ type JournalMeta struct {
 }
 
 type ArticleMeta struct {
-	XMLName xml.Name `xml:"article-meta"`
-	TitleGroup TitleGroup `xml:"title-group"`
+	XMLName           xml.Name       `xml:"article-meta"`
+	TitleGroup        TitleGroup     `xml:"title-group"`
 	ContributorGroups []ContribGroup `xml:"contrib-group"`
 }
 
 type Front struct {
-	XMLName xml.Name `xml:"front"`
+	XMLName     xml.Name    `xml:"front"`
 	JournalMeta JournalMeta `xml:"journal-meta"`
 	ArticleMeta ArticleMeta `xml:"article-meta"`
 }
 
 type OpenXMLPaper struct {
 	XMLName xml.Name `xml:"article"`
-	Front Front `xml:"front"`
+	Front   Front    `xml:"front"`
 }
-
-
 
 // Parsing
 
@@ -64,8 +62,6 @@ func LoadPaperXMLFromFile(path string) (OpenXMLPaper, error) {
 	err = xml.NewDecoder(f).Decode(&paper)
 	return paper, err
 }
-
-
 
 // Convenience functions
 

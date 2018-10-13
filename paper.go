@@ -30,7 +30,6 @@ const HTMLHeader string = `{{headertemplate
 }}
 `
 
-
 // Generic helpers
 
 func fetchResource(url string, filename string) error {
@@ -56,7 +55,6 @@ func fetchResource(url string, filename string) error {
 	return copy_err
 }
 
-
 // Computed properties
 
 func (processor PaperProcessor) folderName() string {
@@ -74,7 +72,6 @@ func (processor PaperProcessor) targetHTMLFileName() string {
 func (processor PaperProcessor) targetSupplementaryArchiveFileName() string {
 	return path.Join(processor.folderName(), "supplementary.zip")
 }
-
 
 // Side effect heavy functions
 
@@ -143,7 +140,6 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 
 	return nil
 }
-
 
 // main entry point
 
