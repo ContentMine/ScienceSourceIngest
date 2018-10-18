@@ -205,6 +205,54 @@
 
     <!-- body -->
 
+    <xsl:template match="ext-link">
+        <a rel="mw:ExtLink">
+            <xsl:attribute name="href">
+                <xsl:value-of select="@xlink:href"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </a>
+    </xsl:template>
+
+    <xsl:template match="xref[@ref-type='bibr']">
+        <xsl:param name="rid">
+            <xsl:value-of select="@rid"/>
+        </xsl:param>
+        <sup
+            class="mw-ref"
+            rel="dc:references"
+            typeof="mw:Extension/ref"
+        >
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat('cite_ref-', @rid)"/>
+            </xsl:attribute>
+            <xsl:attribute name="data-mw">
+                <xsl:text>{"name":"ref","attrs":{"name":"</xsl:text>
+                <xsl:value-of select="@rid"/>
+                <xsl:text>"},"body":{"id":"mw-reference-text-cite_note-</xsl:text>
+                <xsl:value-of select="@rid"/>
+                <xsl:text>"}}</xsl:text>
+            </xsl:attribute>
+            <a>
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat('#cite_note-', @rid)"/>
+                </xsl:attribute>
+                <span class="mw-reflink-text">
+                    <xsl:text>[</xsl:text>
+                    <xsl:apply-templates select="//article/back/ref-list/ref[@id=$rid]" mode="inline"/>
+                    <xsl:text>]</xsl:text>
+                </span>
+            </a>
+        </sup>
+    </xsl:template>
+
+    <xsl:template match="ref" mode="inline">
+        <xsl:param name="offset">
+            <xsl:number count="ref" from="ref-list" level="any"/>
+        </xsl:param>
+        <xsl:value-of select="$offset"/>
+    </xsl:template>
+
     <!-- back -->
 
     <xsl:template match="ack">
@@ -217,23 +265,135 @@
     <xsl:template match="ref-list">
         <section>
             <h2 id="References"><xsl:text>References</xsl:text></h2>
-            <ul>
-                <xsl:for-each select="ref">
-                    <xsl:call-template name="ref-info"/>
-                </xsl:for-each> <!-- ref -->
-            </ul>
+            <div
+                class="mw-references-wrap"
+                typeof="mw:Extension/references"
+            >
+                <xsl:attribute name="data-mw">
+                    <xsl:text>{"name":"references","attrs":{}}</xsl:text>
+                </xsl:attribute>
+                <ol class="mw-references references">
+                    <xsl:for-each select="ref">
+                        <xsl:call-template name="ref-info"/>
+                    </xsl:for-each> <!-- ref -->
+                </ol>
+            </div>
         </section>
     </xsl:template>
 
     <xsl:template name="ref-info">
         <li>
-            <xsl:if test="label">
-                <xsl:text>[</xsl:text>
-                    <xsl:value-of select="label"/>
-                <xsl:text>] </xsl:text>
-            </xsl:if>
-            <xsl:apply-templates select="element-citation"/>
+            <xsl:attribute name="id">
+                <xsl:value-of select="concat('cite_note-', @id)"/>
+            </xsl:attribute>
+            <a rel="mw:referenceBy">
+                <xsl:attribute name="href">
+                    <xsl:value-of select="concat('#cite_ref-', @id)"/>
+                </xsl:attribute>
+                <span class="mw-linkback-text"><xsl:text>↑ </xsl:text></span>
+            </a>
+            <span
+                class="mw-reference-text"
+            >
+                <xsl:attribute name="id">
+                    <xsl:value-of select="concat('mw-reference-text-cite_note-', @id)"/>
+                </xsl:attribute>
+                <cite
+                    class="citation XXXXX"
+                    typeof="mw:Transclusion"
+                >
+                    <xsl:attribute name="data-mw">
+                        <xsl:apply-templates select="element-citation" mode="data-mw"/>
+                    </xsl:attribute>
+                    <xsl:apply-templates select="element-citation"/>
+                </cite>
+                <span
+
+                >
+                </span>
+                <style
+                    typeof="mw:Extension/templatestyles"
+                >
+                    <xsl:attribute name="data-mw">
+                        <xsl:text>{"name":"templatestyles","attrs":{"src":"Module:Citation/CS1/styles.css"},"body":{"extsrc":""}}</xsl:text>
+                    </xsl:attribute>
+                    .mw-parser-output cite.citation{font-style:inherit}.mw-parser-output q{quotes:"\"""\"""'""'"}.mw-parser-output code.cs1-code{color:inherit;background:inherit;border:inherit;padding:inherit}.mw-parser-output .cs1-lock-free a{background:url("//upload.wikimedia.org/wikipedia/commons/thumb/6/65/Lock-green.svg/9px-Lock-green.svg.png")no-repeat;background-position:right .1em center}.mw-parser-output .cs1-lock-limited a,.mw-parser-output .cs1-lock-registration a{background:url("//upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Lock-gray-alt-2.svg/9px-Lock-gray-alt-2.svg.png")no-repeat;background-position:right .1em center}.mw-parser-output .cs1-lock-subscription a{background:url("//upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Lock-red-alt-2.svg/9px-Lock-red-alt-2.svg.png")no-repeat;background-position:right .1em center}.mw-parser-output .cs1-subscription,.mw-parser-output .cs1-registration{color:#555}.mw-parser-output .cs1-subscription span,.mw-parser-output .cs1-registration span{border-bottom:1px dotted;cursor:help}.mw-parser-output .cs1-hidden-error{display:none;font-size:100%}.mw-parser-output .cs1-visible-error{font-size:100%}.mw-parser-output .cs1-subscription,.mw-parser-output .cs1-registration,.mw-parser-output .cs1-format{font-size:95%}.mw-parser-output .cs1-kern-left,.mw-parser-output .cs1-kern-wl-left{padding-left:0.2em}.mw-parser-output .cs1-kern-right,.mw-parser-output .cs1-kern-wl-right{padding-right:0.2em}
+                </style>
+                <span>
+                </span>
+            </span>
         </li>
+    </xsl:template>
+
+
+    <!-- generate the mediawiki embedded data -->
+
+    <xsl:template match="element-citation[@publication-type='other']" mode="data-mw">
+        <xsl:text>{"parts":[{"template":{"target":{"wt":"cite report","href":"./Template:Cite_report"},"params":{</xsl:text>
+        <xsl:apply-templates mode="data-mw"/>
+        <xsl:text>"noop":{"wt":"noop"}</xsl:text>
+        <xsl:text>},"i":0}}]}</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation[@publication-type='journal']" mode="data-mw">
+        <!-- {"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{"vauthors":{"wt":"foo, bar"},"date":{"wt":"2009"},"title":{"wt":"wibble"},"journal":{"wt":"blah"},"publisher":{"wt":"bastards"},"volume":{"wt":"12"}},"i":0}}]} -->
+        <xsl:text>{"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{</xsl:text>
+        <xsl:apply-templates mode="data-mw"/>
+        <xsl:text>"noop":{"wt":"noop"}</xsl:text>
+        <xsl:text>},"i":0}}]}</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation[@publication-type='book']" mode="data-mw">
+        <!-- {"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{"first":{"wt":"foo"},"last":{"wt":"bar"},"title":{"wt":"wibble"}},"i":0}}]} -->
+        <xsl:text>{"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{</xsl:text>
+        <xsl:apply-templates mode="data-mw"/>
+        <xsl:text>"noop":{"wt":"noop"}</xsl:text>
+        <xsl:text>},"i":0}}]}</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation/article-title" mode="data-mw">
+        <xsl:text>"title":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation/year" mode="data-mw">
+        <xsl:text>"date":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation/collab" mode="data-mw">
+        <xsl:text>"publisher":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation[@publication-type='journal']/source" mode="data-mw">
+        <xsl:text>"journal":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation[@publication-type='journal']/volume" mode="data-mw">
+        <xsl:text>"volume":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation/publisher-name" mode="data-mw">
+        <xsl:text>"publisher":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation[@publication-type='journal']/fpage" mode="data-mw">
+        <xsl:text>"page":{"wt":"</xsl:text>
+        <xsl:value-of select="."/>
+        <xsl:text>"},</xsl:text>
+    </xsl:template>
+
+    <xsl:template match="element-citation/*" mode="data-mw">
     </xsl:template>
 
 
