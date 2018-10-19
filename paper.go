@@ -127,7 +127,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 
 	cmd := exec.Cmd{
 		Path: "/usr/bin/xsltproc",
-		Args: []string{"xsltproc", "jats-html.xsl", processor.targetXMLFileName()},
+		Args: []string{"xsltproc", "jats-parsoid.xsl", processor.targetXMLFileName()},
 	}
 
 	stdout, err := cmd.StdoutPipe()
