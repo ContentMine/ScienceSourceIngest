@@ -303,13 +303,11 @@
                     typeof="mw:Transclusion"
                 >
                     <xsl:attribute name="data-mw">
-                        <xsl:apply-templates select="element-citation" mode="data-mw"/>
+                        <xsl:apply-templates select="element-citation | mixed-citation" mode="data-mw"/>
                     </xsl:attribute>
-                    <xsl:apply-templates select="element-citation"/>
+                    <xsl:apply-templates select="element-citation | mixed-citation"/>
                 </cite>
-                <span
-
-                >
+                <span>
                 </span>
                 <style
                     typeof="mw:Extension/templatestyles"
@@ -328,14 +326,14 @@
 
     <!-- generate the mediawiki embedded data -->
 
-    <xsl:template match="element-citation[@publication-type='other']" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='other'] | mixed-citation[@publication-type='other']" mode="data-mw">
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite report","href":"./Template:Cite_report"},"params":{</xsl:text>
         <xsl:apply-templates mode="data-mw"/>
         <xsl:text>"noop":{"wt":"noop"}</xsl:text>
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation[@publication-type='journal']" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='journal'] | mixed-citation[@publication-type='journal']" mode="data-mw">
         <!-- {"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{"vauthors":{"wt":"foo, bar"},"date":{"wt":"2009"},"title":{"wt":"wibble"},"journal":{"wt":"blah"},"publisher":{"wt":"bastards"},"volume":{"wt":"12"}},"i":0}}]} -->
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{</xsl:text>
         <xsl:apply-templates mode="data-mw"/>
@@ -343,7 +341,7 @@
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation[@publication-type='book']" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='book'] | mixed-citation[@publication-type='book']" mode="data-mw">
         <!-- {"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{"first":{"wt":"foo"},"last":{"wt":"bar"},"title":{"wt":"wibble"}},"i":0}}]} -->
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{</xsl:text>
         <xsl:apply-templates mode="data-mw"/>
@@ -351,49 +349,49 @@
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation/article-title" mode="data-mw">
+    <xsl:template match="element-citation/article-title | mixed-citation/article-title" mode="data-mw">
         <xsl:text>"title":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation/year" mode="data-mw">
+    <xsl:template match="element-citation/year | mixed-citation/year" mode="data-mw">
         <xsl:text>"date":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation/collab" mode="data-mw">
+    <xsl:template match="element-citation/collab | mixed-citation/collab" mode="data-mw">
         <xsl:text>"publisher":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation[@publication-type='journal']/source" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='journal']/source | mixed-citation[@publication-type='journal']/source" mode="data-mw">
         <xsl:text>"journal":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation[@publication-type='journal']/volume" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='journal']/volume | mixed-citation[@publication-type='journal']/volume" mode="data-mw">
         <xsl:text>"volume":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation/publisher-name" mode="data-mw">
+    <xsl:template match="element-citation/publisher-name | mixed-citation/publisher-name" mode="data-mw">
         <xsl:text>"publisher":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation[@publication-type='journal']/fpage" mode="data-mw">
+    <xsl:template match="element-citation[@publication-type='journal']/fpage | mixed-citation[@publication-type='journal']/fpage" mode="data-mw">
         <xsl:text>"page":{"wt":"</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"},</xsl:text>
     </xsl:template>
 
-    <xsl:template match="element-citation/*" mode="data-mw">
+    <xsl:template match="element-citation/* | mixed-citation/*" mode="data-mw">
     </xsl:template>
 
 
