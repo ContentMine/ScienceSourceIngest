@@ -328,7 +328,7 @@
 
     <xsl:template match="element-citation[@publication-type='other'] | mixed-citation[@publication-type='other']" mode="data-mw">
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite report","href":"./Template:Cite_report"},"params":{</xsl:text>
-        <xsl:apply-templates mode="data-mw"/>
+        <xsl:apply-templates select="article-title | year | collab | source | volume | publisher-name | fpage" mode="data-mw"/>
         <xsl:text>"noop":{"wt":"noop"}</xsl:text>
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
@@ -336,7 +336,7 @@
     <xsl:template match="element-citation[@publication-type='journal'] | mixed-citation[@publication-type='journal']" mode="data-mw">
         <!-- {"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{"vauthors":{"wt":"foo, bar"},"date":{"wt":"2009"},"title":{"wt":"wibble"},"journal":{"wt":"blah"},"publisher":{"wt":"bastards"},"volume":{"wt":"12"}},"i":0}}]} -->
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite journal","href":"./Template:Cite_journal"},"params":{</xsl:text>
-        <xsl:apply-templates mode="data-mw"/>
+        <xsl:apply-templates select="article-title | year | collab | source | volume | publisher-name | fpage" mode="data-mw"/>
         <xsl:text>"noop":{"wt":"noop"}</xsl:text>
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
@@ -344,7 +344,7 @@
     <xsl:template match="element-citation[@publication-type='book'] | mixed-citation[@publication-type='book']" mode="data-mw">
         <!-- {"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{"first":{"wt":"foo"},"last":{"wt":"bar"},"title":{"wt":"wibble"}},"i":0}}]} -->
         <xsl:text>{"parts":[{"template":{"target":{"wt":"cite book","href":"./Template:Cite_book"},"params":{</xsl:text>
-        <xsl:apply-templates mode="data-mw"/>
+        <xsl:apply-templates select="article-title | year | collab | source | volume | publisher-name | fpage" mode="data-mw"/>
         <xsl:text>"noop":{"wt":"noop"}</xsl:text>
         <xsl:text>},"i":0}}]}</xsl:text>
     </xsl:template>
