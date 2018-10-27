@@ -39,6 +39,7 @@ const HTMLHeader string = `{{headertemplate
 | DOI =
 | PubMed_ID =
 | PMC_ID =
+| Generator = %s/%s
 }}
 `
 
@@ -121,6 +122,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		processor.Paper.LicenseLabel.Value,
 		processor.Paper.ItemLabel.Value,
 		processor.Paper.MainSubjectLabel.Value,
+		Remote, Version,
 	)
 
 	f.Write([]byte(header))

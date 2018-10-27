@@ -21,7 +21,8 @@ import (
 	"sync"
 )
 
-// This will be set by the build script to something meaningful
+// These will be set by the build script to something meaningful
+var Remote string
 var Version string
 
 // We could fire off 100 requests at once, but that's not being nice to

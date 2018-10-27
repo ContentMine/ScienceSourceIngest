@@ -3,7 +3,8 @@ GO=go
 GIT=git
 
 $(eval VERSION:=$(shell git rev-parse HEAD))
-LD_FLAGS=-ldflags "-X main.Version=${VERSION}"
+$(eval REMOTE:=$(shell git remote get-url origin))
+LD_FLAGS=-ldflags "-X main.Version=${VERSION} -X main.Remote=${REMOTE}"
 
 all: .PHONY ingest
 
