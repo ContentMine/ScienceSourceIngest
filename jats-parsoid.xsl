@@ -253,6 +253,7 @@
         <xsl:value-of select="$offset"/>
     </xsl:template>
 
+
     <!-- back -->
 
     <xsl:template match="ack">
@@ -537,6 +538,38 @@
     <span class="generated">] </span>
   </xsl:template>
 
+  <!-- ============================================================= -->
+  <!--  TABLES                                                       -->
+  <!-- ============================================================= -->
+  <!--  Tables are already in XHTML, and can simply be copied
+        through.
+
+        Technically parsoidHTML only deals with tbody when generating
+        tables from wikitext, but it can consume them fine, so I'm
+        going to leave them in when doing the conversion.            -->
+
+
+  <xsl:template match="table | thead | tbody | tfoot | tr | th | td">
+    <xsl:copy>
+      <xsl:apply-templates select="@rowspan | @colspan" mode="table-copy"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+  </xsl:template>
+
+  <xsl:template match="array/tbody">
+    <table>
+      <xsl:copy>
+      <xsl:apply-templates select="@*" mode="table-copy"/>
+      <xsl:apply-templates/>
+    </xsl:copy>
+    </table>
+  </xsl:template>
+
+  <xsl:template match="@*" mode="table-copy">
+    <xsl:copy-of select="."/>
+  </xsl:template>
+
+  <xsl:template match="@content-type" mode="table-copy"/>
 
 
 </xsl:stylesheet>
