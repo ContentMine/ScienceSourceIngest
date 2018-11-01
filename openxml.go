@@ -34,19 +34,25 @@ type ContribGroup struct {
 	Contributors []Contributor `xml:"contrib"`
 }
 
-type TitleGroup struct {
+type ArticleTitleGroup struct {
 	XMLName          xml.Name `xml:"title-group"`
 	ArticleTitle     string   `xml:"article-title"`
 	AlternativeTitle string   `xml:"alt-title"`
 }
 
+type JournalTitleGroup struct {
+	XMLName          xml.Name `xml:"journal-title-group"`
+	JournalTitle     string   `xml:"journal-title"`
+}
+
 type JournalMeta struct {
 	XMLName xml.Name `xml:"journal-meta"`
+	TitleGroup        JournalTitleGroup     `xml:"journal-title-group"`
 }
 
 type ArticleMeta struct {
 	XMLName           xml.Name       `xml:"article-meta"`
-	TitleGroup        TitleGroup     `xml:"title-group"`
+	TitleGroup        ArticleTitleGroup     `xml:"title-group"`
 	ContributorGroups []ContribGroup `xml:"contrib-group"`
 }
 
@@ -86,6 +92,10 @@ func (author *ContributorName) String() string {
 
 func (paper OpenXMLPaper) Title() string {
 	return paper.Front.ArticleMeta.TitleGroup.ArticleTitle
+}
+
+func (paper OpenXMLPaper) JournalTitle() string {
+	return paper.Front.JournalMeta.TitleGroup.JournalTitle
 }
 
 func (paper OpenXMLPaper) FirstAuthor() *ContributorName {
