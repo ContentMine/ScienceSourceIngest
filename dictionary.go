@@ -46,21 +46,21 @@ type Dictionary struct {
 	log        []DictionaryLog   `json:"log"`
 	Entries    []DictionaryEntry `json:"entries"`
 
-	Matcher     *ahocorasick.Matcher
+	Matcher *ahocorasick.Matcher
 }
 
 type DictionaryMatch struct {
-    Offset int
-    Entry DictionaryEntry
-    Dictionary *Dictionary
+	Offset     int
+	Entry      DictionaryEntry
+	Dictionary *Dictionary
 }
 
 // Sorting interface for hits using the ahocorasick Matcher
 
 type DictionaryMatchesByOffset []DictionaryMatch
 
-func (a DictionaryMatchesByOffset) Len() int { return len(a) }
-func (a DictionaryMatchesByOffset) Swap(i, j int) { a[i], a[j] = a[j], a[i] }
+func (a DictionaryMatchesByOffset) Len() int           { return len(a) }
+func (a DictionaryMatchesByOffset) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a DictionaryMatchesByOffset) Less(i, j int) bool { return a[i].Offset < a[j].Offset }
 
 // Parsing
@@ -74,17 +74,17 @@ func LoadDictionaryFromFile(path string) (Dictionary, error) {
 	}
 
 	err = json.NewDecoder(f).Decode(&dict)
-	if (err != nil) {
-	    return Dictionary{}, err
+	if err != nil {
+		return Dictionary{}, err
 	}
 
-    raw := make([]string, len(dict.Entries))
+	raw := make([]string, len(dict.Entries))
 
-    for idx, entry := range dict.Entries {
-        raw[idx] = entry.Term;
-    }
+	for idx, entry := range dict.Entries {
+		raw[idx] = entry.Term
+	}
 
-    dict.Matcher = ahocorasick.NewStringMatcher(raw)
+	dict.Matcher = ahocorasick.NewStringMatcher(raw)
 
 	return dict, nil
 }
@@ -112,23 +112,21 @@ func LoadDictionariesFromDirectory(directory_path string) ([]Dictionary, error) 
 	return res, nil
 }
 
-
 // Helper functions
 
 func (d Dictionary) FindMatches(prose []byte) []DictionaryMatch {
 
-    hits := d.Matcher.Match(prose)
+	hits := d.Matcher.Match(prose)
 
-    res := make([]DictionaryMatch, len(hits))
-    for i := 0; i < len(hits); i++ {
-        hit := hits[i]
-        res[i] = DictionaryMatch{
-            Offset: hit.Position,
-            Entry: d.Entries[hit.Key],
-            Dictionary: &d,
-        }
-    }
+	res := make([]DictionaryMatch, len(hits))
+	for i := 0; i < len(hits); i++ {
+		hit := hits[i]
+		res[i] = DictionaryMatch{
+			Offset:     hit.Position,
+			Entry:      d.Entries[hit.Key],
+			Dictionary: &d,
+		}
+	}
 
-    return res
+	return res
 }
-

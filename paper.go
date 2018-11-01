@@ -15,6 +15,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -23,6 +24,7 @@ import (
 	"os/exec"
 	"path"
 	"sort"
+	"time"
 )
 
 type PaperProcessor struct {
@@ -44,6 +46,15 @@ const HTMLHeader string = `{{headertemplate
 | Generator = %s/%s
 }}
 `
+
+type SearchDirection int
+
+const (
+	SearchDirectionBackward SearchDirection = -1
+	SearchDirectionForward                  = 1
+)
+
+const PhraseTargetSize int = 100
 
 // Generic helpers
 
@@ -70,6 +81,38 @@ func fetchResource(url string, filename string) error {
 	return copy_err
 }
 
+func findPhrase(prose []byte, startOffset int, direction SearchDirection) string {
+
+	targetOffset := startOffset + (PhraseTargetSize * int(direction))
+
+	// Need better terminating condition here
+	for true {
+		if direction == SearchDirectionBackward {
+			if targetOffset < 0 {
+				targetOffset = 0
+				break
+			}
+		} else {
+			if targetOffset > (len(prose) - 1) {
+				targetOffset = len(prose) - 1
+				break
+			}
+		}
+
+		if prose[targetOffset] == byte(' ') {
+			break
+		}
+
+		targetOffset = targetOffset + (1 * int(direction))
+	}
+
+	if startOffset > targetOffset {
+		startOffset, targetOffset = targetOffset, startOffset
+	}
+
+	return string(prose[startOffset:targetOffset])
+}
+
 // Computed properties
 
 func (processor PaperProcessor) folderName() string {
@@ -86,6 +129,10 @@ func (processor PaperProcessor) targetHTMLFileName() string {
 
 func (processor PaperProcessor) targetTextFileName() string {
 	return path.Join(processor.folderName(), "paper.txt")
+}
+
+func (processor PaperProcessor) targetAnnotationsFileName() string {
+	return path.Join(processor.folderName(), "annotations.json")
 }
 
 func (processor PaperProcessor) targetSupplementaryArchiveFileName() string {
@@ -196,62 +243,72 @@ func (processor PaperProcessor) processXMLToText() error {
 
 func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary) ([]Annotation, error) {
 
-    data, err := ioutil.ReadFile(processor.targetTextFileName())
-    if err != nil {
-        return nil, err
-    }
+	data, err := ioutil.ReadFile(processor.targetTextFileName())
+	if err != nil {
+		return nil, err
+	}
 
-    total_matches := make([]DictionaryMatch, 0)
+	total_matches := make([]DictionaryMatch, 0)
 
-    for _, dictionary := range dictionaries {
-        total_matches = append(total_matches, dictionary.FindMatches(data)...)
-    }
+	for _, dictionary := range dictionaries {
+		total_matches = append(total_matches, dictionary.FindMatches(data)...)
+	}
 
-    fmt.Printf("we found %d terms\n", len(total_matches))
-    sort.Sort(DictionaryMatchesByOffset(total_matches))
+	sort.Sort(DictionaryMatchesByOffset(total_matches))
 
-    res := make([]Annotation, len(total_matches))
+	res := make([]Annotation, len(total_matches))
 
-    for i := 0; i < len(total_matches); i++ {
-        match := total_matches[i]
+	for i := 0; i < len(total_matches); i++ {
+		match := total_matches[i]
 
-        distanceToPreceding := 0
-        if i > 0 {
-            distanceToPreceding = match.Offset - total_matches[i - 1].Offset
-        }
-        distanceToFollowing := 0
-        if i < (len(total_matches) - 1) {
-            distanceToFollowing = total_matches[i + 1].Offset - match.Offset
-        }
+		distanceToPreceding := 0
+		if i > 0 {
+			distanceToPreceding = match.Offset - total_matches[i-1].Offset
+		}
+		distanceToFollowing := 0
+		if i < (len(total_matches) - 1) {
+			distanceToFollowing = total_matches[i+1].Offset - match.Offset
+		}
 
-        annotation := Annotation{
-            WikiDataItemCode: match.Entry.Identifiers.WikiData,
-            // InstanceOf
-            // SubclassOf
-            // PrecedingAnchorPoint
-            // FollowingAnchorPoint
-            DistanceToPreceding: distanceToPreceding,
-            DistanceToFollowing: distanceToFollowing,
-            CharacterNumber: match.Offset,
-            // ArticleTextTitle,
-            // AnchorPoint,
-            // PrceedingPhrase,
-            // FollowingPhrase,
-            TermFound: match.Entry.Term,
-            DictionaryName: match.Dictionary.Identifier,
-            // PublicationName,
-            LengthOfTermFound: len(match.Entry.Term),
-            // BasedOn
-            // ScienceSourceArticleTitle
-            // TimeCode
-            // Anchors
-            // FormatterURL
-        }
+		annotation := Annotation{
+			WikiDataItemCode: match.Entry.Identifiers.WikiData,
+			// InstanceOf
+			// SubclassOf
+			// PrecedingAnchorPoint
+			// FollowingAnchorPoint
+			DistanceToPreceding: distanceToPreceding,
+			DistanceToFollowing: distanceToFollowing,
+			CharacterNumber:     match.Offset,
+			// ArticleTextTitle,
+			// AnchorPoint,
+			PrecedingPhrase: findPhrase(data, match.Offset, SearchDirectionBackward),
+			FollowingPhrase: findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
+			TermFound:       match.Entry.Term,
+			DictionaryName:  match.Dictionary.Identifier,
+			// PublicationName,
+			LengthOfTermFound: len(match.Entry.Term),
+			// BasedOn
+			// ScienceSourceArticleTitle
+			TimeCode: time.Now().String(), // TODO: Format properly
+			// Anchors
+			FormatterURL: "https://www.wikidata.org/wiki/$",
+		}
 
-        res[i] = annotation
-    }
+		res[i] = annotation
+	}
 
-    return res, nil
+	return res, nil
+}
+
+func (processor PaperProcessor) saveAnnotations(annotations []Annotation) error {
+
+	f, err := os.Create(processor.targetAnnotationsFileName())
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	return json.NewEncoder(f).Encode(annotations)
 }
 
 // main entry point
@@ -288,9 +345,16 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary) error {
 		return err
 	}
 
-	_, err = processor.findAnnotations(dictionaries)
+	annotations, aerr := processor.findAnnotations(dictionaries)
+	if aerr != nil {
+		return aerr
+	}
+
+	fmt.Printf("we found %d terms\n", len(annotations))
+
+	err = processor.saveAnnotations(annotations)
 	if err != nil {
-	    return err
+		return err
 	}
 
 	return nil
