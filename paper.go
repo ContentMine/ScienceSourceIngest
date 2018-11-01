@@ -17,10 +17,12 @@ package main
 import (
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
 	"path"
+	"sort"
 )
 
 type PaperProcessor struct {
@@ -80,6 +82,10 @@ func (processor PaperProcessor) targetXMLFileName() string {
 
 func (processor PaperProcessor) targetHTMLFileName() string {
 	return path.Join(processor.folderName(), "paper.html")
+}
+
+func (processor PaperProcessor) targetTextFileName() string {
+	return path.Join(processor.folderName(), "paper.txt")
 }
 
 func (processor PaperProcessor) targetSupplementaryArchiveFileName() string {
@@ -155,9 +161,102 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 	return nil
 }
 
+func (processor PaperProcessor) processXMLToText() error {
+
+	f, err := os.Create(processor.targetTextFileName())
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	cmd := exec.Cmd{
+		Path: "/usr/bin/xsltproc",
+		Args: []string{"xsltproc", "jats-text.xsl", processor.targetXMLFileName()},
+	}
+
+	stdout, err := cmd.StdoutPipe()
+	if err != nil {
+		return err
+	}
+	if err := cmd.Start(); err != nil {
+		return err
+	}
+
+	_, copy_err := io.Copy(f, stdout)
+	if copy_err != nil {
+		return err
+	}
+
+	if err := cmd.Wait(); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary) ([]Annotation, error) {
+
+    data, err := ioutil.ReadFile(processor.targetTextFileName())
+    if err != nil {
+        return nil, err
+    }
+
+    total_matches := make([]DictionaryMatch, 0)
+
+    for _, dictionary := range dictionaries {
+        total_matches = append(total_matches, dictionary.FindMatches(data)...)
+    }
+
+    fmt.Printf("we found %d terms\n", len(total_matches))
+    sort.Sort(DictionaryMatchesByOffset(total_matches))
+
+    res := make([]Annotation, len(total_matches))
+
+    for i := 0; i < len(total_matches); i++ {
+        match := total_matches[i]
+
+        distanceToPreceding := 0
+        if i > 0 {
+            distanceToPreceding = match.Offset - total_matches[i - 1].Offset
+        }
+        distanceToFollowing := 0
+        if i < (len(total_matches) - 1) {
+            distanceToFollowing = total_matches[i + 1].Offset - match.Offset
+        }
+
+        annotation := Annotation{
+            WikiDataItemCode: match.Entry.Identifiers.WikiData,
+            // InstanceOf
+            // SubclassOf
+            // PrecedingAnchorPoint
+            // FollowingAnchorPoint
+            DistanceToPreceding: distanceToPreceding,
+            DistanceToFollowing: distanceToFollowing,
+            CharacterNumber: match.Offset,
+            // ArticleTextTitle,
+            // AnchorPoint,
+            // PrceedingPhrase,
+            // FollowingPhrase,
+            TermFound: match.Entry.Term,
+            DictionaryName: match.Dictionary.Identifier,
+            // PublicationName,
+            LengthOfTermFound: len(match.Entry.Term),
+            // BasedOn
+            // ScienceSourceArticleTitle
+            // TimeCode
+            // Anchors
+            // FormatterURL
+        }
+
+        res[i] = annotation
+    }
+
+    return res, nil
+}
+
 // main entry point
 
-func (processor PaperProcessor) ProcessPaper() error {
+func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary) error {
 
 	err := processor.createFolderIfRequired()
 	if err != nil {
@@ -182,6 +281,16 @@ func (processor PaperProcessor) ProcessPaper() error {
 	err = processor.processXMLToHTML(openXMLdoc.FirstAuthor())
 	if err != nil {
 		return err
+	}
+
+	err = processor.processXMLToText()
+	if err != nil {
+		return err
+	}
+
+	_, err = processor.findAnnotations(dictionaries)
+	if err != nil {
+	    return err
 	}
 
 	return nil

@@ -58,6 +58,16 @@ func main() {
 	}
 	log.Printf("We have %d papers to process", len(library))
 
+	// Load the dictionaries of terms we want to create annotations for
+	dictionaries, err := LoadDictionariesFromDirectory(dictionaries_path)
+	if err != nil {
+		panic(err)
+	}
+	log.Printf("We have loaded %d dictionaries", len(dictionaries))
+	for _, dict := range dictionaries {
+		log.Printf("Dict %s has %d entries", dict.Identifier, len(dict.Entries))
+	}
+
 	// Here I use a traditional wait group to wait for everyone to be done,
 	// and I use a channel to control the number of concurrent operations allowed.
 	// In theory I can use the channel also to wait at the end, but it's not as
@@ -78,21 +88,11 @@ func main() {
 			log.Printf("Process paper %s", to_process.ID())
 
 			var processor = PaperProcessor{Paper: to_process, TargetDirectory: target_path}
-			err := processor.ProcessPaper()
+			err := processor.ProcessPaper(dictionaries)
 			if err != nil {
 				log.Printf("Failed to process paper %s: %v", to_process.ID(), err)
 			}
 		}()
 	}
 	wg.Wait()
-
-	// Load the dictionaries of terms we want to create annotations for
-	dictionaries, err := LoadDictionariesFromDirectory(dictionaries_path)
-	if err != nil {
-		panic(err)
-	}
-	log.Printf("We have loaded %d dictionaries", len(dictionaries))
-	for _, dict := range dictionaries {
-		log.Printf("Dict %s has %d entries", dict.Identifier, len(dict.Entries))
-	}
 }

@@ -24,7 +24,7 @@ type Annotation struct {
 	// P5 ??
 	PrecedingAnchorPoint      string `json:"P6"`
 	FollowingAnchorPoint      string `json:"P7"`
-	DistanceToPreceeding      int    `json:"P8"`
+	DistanceToPreceding       int    `json:"P8"`
 	DistanceToFollowing       int    `json:"P9"`
 	CharacterNumber           int    `json:"P10"`
 	ArticleTextTitle          string `json:"P11"`
