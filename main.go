@@ -32,6 +32,27 @@ const concurrencyLimit int = 5
 
 func main() {
 
+    wikibase := NewWikiDataClient(WikiBaseConsumerKey, WikiBaseConsumerSecret, "http://localhost:8181")
+
+	property_list, item_list := GetPropertyAndItemLists()
+	for _, i := range property_list {
+	    label, err := wikibase.GetPropertyForLabel(i)
+	    if err != nil {
+	        panic(err)
+	    }
+		log.Printf("property %s: %s", i, label)
+	}
+	for _, i := range item_list {
+	    label, err := wikibase.GetItemForLabel(i)
+	    if err != nil {
+	        panic(err)
+	    }
+		log.Printf("item %s: %s", i, label)
+	}
+}
+
+func notmain() {
+
 	var feed_path string
 	var target_path string
 	var dictionaries_path string
@@ -49,7 +70,7 @@ func main() {
 
 	// the SPARQL seems to have duplicates in, so let's check
 	library := make(map[string]Paper)
-	for _, paper := range feed.Results.Papers[0:10] {
+	for _, paper := range feed.Results.Papers[0:100] {
 		if _, prs := library[paper.ID()]; prs == true {
 			log.Printf("Found a duplicate paper: %v", paper.ID())
 		} else {

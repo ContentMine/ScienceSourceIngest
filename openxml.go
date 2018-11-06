@@ -41,19 +41,19 @@ type ArticleTitleGroup struct {
 }
 
 type JournalTitleGroup struct {
-	XMLName          xml.Name `xml:"journal-title-group"`
-	JournalTitle     string   `xml:"journal-title"`
+	XMLName      xml.Name `xml:"journal-title-group"`
+	JournalTitle string   `xml:"journal-title"`
 }
 
 type JournalMeta struct {
-	XMLName xml.Name `xml:"journal-meta"`
-	TitleGroup        JournalTitleGroup     `xml:"journal-title-group"`
+	XMLName    xml.Name          `xml:"journal-meta"`
+	TitleGroup JournalTitleGroup `xml:"journal-title-group"`
 }
 
 type ArticleMeta struct {
-	XMLName           xml.Name       `xml:"article-meta"`
-	TitleGroup        ArticleTitleGroup     `xml:"title-group"`
-	ContributorGroups []ContribGroup `xml:"contrib-group"`
+	XMLName           xml.Name          `xml:"article-meta"`
+	TitleGroup        ArticleTitleGroup `xml:"title-group"`
+	ContributorGroups []ContribGroup    `xml:"contrib-group"`
 }
 
 type Front struct {

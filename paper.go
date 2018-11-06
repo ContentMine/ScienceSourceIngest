@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 	"os/exec"
@@ -242,7 +243,7 @@ func (processor PaperProcessor) processXMLToText() error {
 }
 
 func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
-    articleTitle string, journalTitle string) ([]Annotation, error) {
+	articleTitle string, journalTitle string) ([]Annotation, error) {
 
 	data, err := ioutil.ReadFile(processor.targetTextFileName())
 	if err != nil {
@@ -280,13 +281,13 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			DistanceToPreceding: distanceToPreceding,
 			DistanceToFollowing: distanceToFollowing,
 			CharacterNumber:     match.Offset,
-			ArticleTextTitle: articleTitle,
+			ArticleTextTitle:    articleTitle,
 			// AnchorPoint,
-			PrecedingPhrase: findPhrase(data, match.Offset, SearchDirectionBackward),
-			FollowingPhrase: findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
-			TermFound:       match.Entry.Term,
-			DictionaryName:  match.Dictionary.Identifier,
-			PublicationName: journalTitle,
+			PrecedingPhrase:   findPhrase(data, match.Offset, SearchDirectionBackward),
+			FollowingPhrase:   findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
+			TermFound:         match.Entry.Term,
+			DictionaryName:    match.Dictionary.Identifier,
+			PublicationName:   journalTitle,
 			LengthOfTermFound: len(match.Entry.Term),
 			// BasedOn
 			// ScienceSourceArticleTitle
@@ -347,10 +348,12 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary) error {
 	}
 
 	annotations, aerr := processor.findAnnotations(dictionaries, openXMLdoc.Title(),
-	    openXMLdoc.JournalTitle())
+		openXMLdoc.JournalTitle())
 	if aerr != nil {
 		return aerr
 	}
+
+	log.Printf("Count %d", len(annotations))
 
 	err = processor.saveAnnotations(annotations)
 	if err != nil {
