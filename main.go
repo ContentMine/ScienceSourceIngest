@@ -32,33 +32,14 @@ const concurrencyLimit int = 5
 
 func main() {
 
-    wikibase := NewWikiDataClient(WikiBaseConsumerKey, WikiBaseConsumerSecret, "http://localhost:8181")
-
-	property_list, item_list := GetPropertyAndItemLists()
-	for _, i := range property_list {
-	    label, err := wikibase.GetPropertyForLabel(i)
-	    if err != nil {
-	        panic(err)
-	    }
-		log.Printf("property %s: %s", i, label)
-	}
-	for _, i := range item_list {
-	    label, err := wikibase.GetItemForLabel(i)
-	    if err != nil {
-	        panic(err)
-	    }
-		log.Printf("item %s: %s", i, label)
-	}
-}
-
-func notmain() {
-
 	var feed_path string
 	var target_path string
 	var dictionaries_path string
+	var url_base string
 	flag.StringVar(&feed_path, "feed", "", "JSON feed of papers, required")
 	flag.StringVar(&target_path, "output", ".", "Directory to store the results, required")
 	flag.StringVar(&dictionaries_path, "dictionaries", "", "Directory of dictionaries to load.")
+	flag.StringVar(&url_base, "urlbase", "http://localhost:8181", "Base URL for science source.")
 	flag.Parse()
 
 	log.Printf("Feed to parse: %s", feed_path)
@@ -89,6 +70,13 @@ func notmain() {
 		log.Printf("Dict %s has %d entries", dict.Identifier, len(dict.Entries))
 	}
 
+	// Connect to Science Source instance and get any information we need
+	sciSourceClient := NewScienceSourceClient(WikiBaseConsumerKey, WikiBaseConsumerSecret, url_base)
+	err = sciSourceClient.GetPropertyAndItemConfigurationFromServer()
+	if err != nil {
+		panic(err)
+	}
+
 	// Here I use a traditional wait group to wait for everyone to be done,
 	// and I use a channel to control the number of concurrent operations allowed.
 	// In theory I can use the channel also to wait at the end, but it's not as
@@ -109,7 +97,7 @@ func notmain() {
 			log.Printf("Process paper %s", to_process.ID())
 
 			var processor = PaperProcessor{Paper: to_process, TargetDirectory: target_path}
-			err := processor.ProcessPaper(dictionaries)
+			err := processor.ProcessPaper(dictionaries, sciSourceClient)
 			if err != nil {
 				log.Printf("Failed to process paper %s: %v", to_process.ID(), err)
 			}

@@ -26,7 +26,7 @@ import (
 
 type DictionaryLog struct {
 	Type  string `json:"type"`
-	Query string `json:"type"`
+	Query string `json:"query"`
 	Time  int    `json:"time"`
 }
 
@@ -43,7 +43,7 @@ type DictionaryEntry struct {
 
 type Dictionary struct {
 	Identifier string            `json:"id"`
-	log        []DictionaryLog   `json:"log"`
+	Log        []DictionaryLog   `json:"log"`
 	Entries    []DictionaryEntry `json:"entries"`
 
 	Matcher *ahocorasick.Matcher

@@ -24,9 +24,10 @@ import (
 )
 
 type WikiBaseType string
+
 const (
-    WikiBaseProperty WikiBaseType = "property"
-    WikiBaseItem WikiBaseType = "item"
+	WikiBaseProperty WikiBaseType = "property"
+	WikiBaseItem     WikiBaseType = "item"
 )
 
 type GeneralAPIResponse struct {
@@ -51,7 +52,7 @@ type WikiBaseSearchItem struct {
 	Duration    int    `json:"ns"`
 	Title       string `json:"title"`
 	PageID      int    `json:"pageid"`
-	DisplayText string    `json:"displaytext"`
+	DisplayText string `json:"displaytext"`
 }
 
 type WikiBaseSearchQuery struct {
@@ -183,10 +184,10 @@ func (c *WikiDataClient) getWikibaseThingForLabel(thing WikiBaseType, label stri
 	case 0:
 		return "", fmt.Errorf("Failed to find any matching properties for %s", label)
 	case 1:
-        parts := strings.Split(search.Query.Items[0].Title, ":")
-        if len(parts) != 2 {
-            return "", fmt.Errorf("We expected type:value in reply, but got: %v", search.Query.Items[0].Title)
-        }
+		parts := strings.Split(search.Query.Items[0].Title, ":")
+		if len(parts) != 2 {
+			return "", fmt.Errorf("We expected type:value in reply, but got: %v", search.Query.Items[0].Title)
+		}
 		return parts[1], nil // TODO fix
 	default:
 		return "", fmt.Errorf("Too many matches returned: %d", len(search.Query.Items))
@@ -194,9 +195,9 @@ func (c *WikiDataClient) getWikibaseThingForLabel(thing WikiBaseType, label stri
 }
 
 func (c *WikiDataClient) GetPropertyForLabel(label string) (string, error) {
-    return c.getWikibaseThingForLabel(WikiBaseProperty, label)
+	return c.getWikibaseThingForLabel(WikiBaseProperty, label)
 }
 
 func (c *WikiDataClient) GetItemForLabel(label string) (string, error) {
-    return c.getWikibaseThingForLabel(WikiBaseItem, label)
+	return c.getWikibaseThingForLabel(WikiBaseItem, label)
 }

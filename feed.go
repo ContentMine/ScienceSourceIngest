@@ -18,6 +18,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 )
 
 const PMCAPIURL string = "https://www.ebi.ac.uk/europepmc/webservices/rest"
@@ -83,4 +84,14 @@ func (paper Paper) FullTextURL() string {
 
 func (paper Paper) SupplementaryFilesURL() string {
 	return fmt.Sprintf("%s/PMC%s/supplementaryFiles", PMCAPIURL, paper.ID())
+}
+
+func (paper Paper) WikiDataID() string {
+
+    parts := strings.Split(paper.Item.Value, "/")
+    if len(parts) > 0 {
+        return parts[len(parts) - 1 ]
+    }
+
+    return ""
 }

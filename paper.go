@@ -31,20 +31,24 @@ import (
 type PaperProcessor struct {
 	Paper           Paper
 	TargetDirectory string
+	ScienceSourceRecord *ScienceSourceArticle
 }
 
-const HTMLHeader string = `{{headertemplate
+const HTMLHeader string = `{{articleheader
 | title = %s
 | publication_date = %s
 | initial_author_first = %s
 | initial_author_last = %s
-| license = %s
-| wikidata = %s
-| main_subject = %s
-| DOI =
-| PubMed_ID =
-| PMC_ID =
+| wikidata_code = %s
 | Generator = %s/%s
+}}
+`
+
+const HTMLFooter string = `{{articlefooter
+| pmcid = %s
+| license = %s
+| main_subject = %s
+| batch_date = %d-%d-%d
 }}
 `
 
@@ -132,8 +136,8 @@ func (processor PaperProcessor) targetTextFileName() string {
 	return path.Join(processor.folderName(), "paper.txt")
 }
 
-func (processor PaperProcessor) targetAnnotationsFileName() string {
-	return path.Join(processor.folderName(), "annotations.json")
+func (processor PaperProcessor) targetScienceSourceStateFileName() string {
+	return path.Join(processor.folderName(), "scisource.json")
 }
 
 func (processor PaperProcessor) targetSupplementaryArchiveFileName() string {
@@ -152,6 +156,19 @@ func (processor PaperProcessor) fetchPaperTextToDisk() error {
 
 func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
 	return fetchResource(processor.Paper.SupplementaryFilesURL(), processor.targetSupplementaryArchiveFileName())
+}
+
+// Main processing functions
+
+func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArticle {
+    article := &ScienceSourceArticle {
+        WikiDataItemCode: processor.Paper.WikiDataID(),
+        ArticleTextTitle: processor.Paper.Title.Value,
+        PublicationDate: processor.Paper.Date.Value,
+        TimeCode: time.Now().String(),
+    }
+
+    return article
 }
 
 func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) error {
@@ -173,9 +190,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		processor.Paper.Title.Value,
 		processor.Paper.Date.Value,
 		firstName, surname,
-		processor.Paper.LicenseLabel.Value,
 		processor.Paper.ItemLabel.Value,
-		processor.Paper.MainSubjectLabel.Value,
 		Remote, Version,
 	)
 
@@ -203,8 +218,16 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		return err
 	}
 
+    now := time.Now()
+    footer := fmt.Sprintf(HTMLFooter,
+        processor.Paper.PMCID.Value,
+		processor.Paper.LicenseLabel.Value,
+		processor.Paper.MainSubjectLabel.Value,
+		now.Year(), now.Month(), now.Day(),
+    )
+
 	// write the footer
-	f.Write([]byte("{{footertemplate}}\n"))
+	f.Write([]byte(footer))
 
 	return nil
 }
@@ -243,7 +266,7 @@ func (processor PaperProcessor) processXMLToText() error {
 }
 
 func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
-	articleTitle string, journalTitle string) ([]Annotation, error) {
+	articleTitle string, journalTitle string) ([]ScienceSourceAnchorPoint, error) {
 
 	data, err := ioutil.ReadFile(processor.targetTextFileName())
 	if err != nil {
@@ -258,7 +281,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 
 	sort.Sort(DictionaryMatchesByOffset(total_matches))
 
-	res := make([]Annotation, len(total_matches))
+	res := make([]ScienceSourceAnchorPoint, len(total_matches))
 
 	for i := 0; i < len(total_matches); i++ {
 		match := total_matches[i]
@@ -272,55 +295,54 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			distanceToFollowing = total_matches[i+1].Offset - match.Offset
 		}
 
-		annotation := Annotation{
+        now := time.Now().String() // TODO: Format properly
+
+        annotation := ScienceSourceAnnotation{
+            TermFound: match.Entry.Term,
+			DictionaryName:    match.Dictionary.Identifier,
 			WikiDataItemCode: match.Entry.Identifiers.WikiData,
-			// InstanceOf
-			// SubclassOf
-			// PrecedingAnchorPoint
-			// FollowingAnchorPoint
+			LengthOfTermFound: len(match.Entry.Term),
+			TimeCode: now,
+        }
+
+        anchorPoint := ScienceSourceAnchorPoint {
+			PrecedingPhrase:   findPhrase(data, match.Offset, SearchDirectionBackward),
+			FollowingPhrase:   findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
 			DistanceToPreceding: distanceToPreceding,
 			DistanceToFollowing: distanceToFollowing,
 			CharacterNumber:     match.Offset,
-			ArticleTextTitle:    articleTitle,
-			// AnchorPoint,
-			PrecedingPhrase:   findPhrase(data, match.Offset, SearchDirectionBackward),
-			FollowingPhrase:   findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
-			TermFound:         match.Entry.Term,
-			DictionaryName:    match.Dictionary.Identifier,
-			PublicationName:   journalTitle,
-			LengthOfTermFound: len(match.Entry.Term),
-			// BasedOn
-			// ScienceSourceArticleTitle
-			TimeCode: time.Now().String(), // TODO: Format properly
-			// Anchors
-			FormatterURL: "https://www.wikidata.org/wiki/$",
-		}
+			TimeCode: now,
 
-		res[i] = annotation
+			Annotation: annotation,
+        }
+
+        res = append(res, anchorPoint)
 	}
 
 	return res, nil
 }
 
-func (processor PaperProcessor) saveAnnotations(annotations []Annotation) error {
+func (processor PaperProcessor) saveScienceSourceState() error {
 
-	f, err := os.Create(processor.targetAnnotationsFileName())
+	f, err := os.Create(processor.targetScienceSourceStateFileName())
 	if err != nil {
 		return err
 	}
 	defer f.Close()
 
-	return json.NewEncoder(f).Encode(annotations)
+	return json.NewEncoder(f).Encode(processor.ScienceSourceRecord)
 }
 
 // main entry point
 
-func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary) error {
+func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourceClient *ScienceSourceClient) error {
 
 	err := processor.createFolderIfRequired()
 	if err != nil {
 		return err
 	}
+
+    processor.ScienceSourceRecord = processor.populateScienceSourceArticle()
 
 	err = processor.fetchPaperTextToDisk()
 	if err != nil {
@@ -352,10 +374,11 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary) error {
 	if aerr != nil {
 		return aerr
 	}
-
 	log.Printf("Count %d", len(annotations))
 
-	err = processor.saveAnnotations(annotations)
+    processor.ScienceSourceRecord.Annotations = annotations
+
+	err = processor.saveScienceSourceState()
 	if err != nil {
 		return err
 	}

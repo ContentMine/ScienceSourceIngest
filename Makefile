@@ -14,6 +14,10 @@ ingest: .PHONY
 fmt: .PHONY
 	$(GO) fmt
 
-test: .PHONY
+vet: .PHONY
+	$(GO) vet
+
+test: .PHONY vet
+	$(GO) test
 
 .PHONY:
