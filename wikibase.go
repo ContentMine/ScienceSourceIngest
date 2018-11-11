@@ -30,6 +30,8 @@ const (
 	WikiBaseItem     WikiBaseType = "item"
 )
 
+// WikiBase API response structs
+
 type GeneralAPIResponse struct {
 	BatchComplete string  `json:"batchcomplete"`
 	RequestID     *string `json:"requestid"`
@@ -62,6 +64,28 @@ type WikiBaseSearchQuery struct {
 type WikiBaseSearchResponse struct {
 	GeneralAPIResponse
 	Query WikiBaseSearchQuery `json:"query"`
+}
+
+type WikiBaseArticleEditDetailResponse struct {
+	ContentModel  string  `json:"contentmodel"`
+	New           *string `json:"new"`
+	NewRevisionID int  `json:"newrevid"`
+	OldRevisionID int  `json:"oldrevid"`
+	NewTimeStamp  string  `json:"newtimestamp"`
+	PageID        int  `json:"pageid"`
+	Result        string  `json:"result"`
+	Title         string  `json:"title"`
+}
+
+type WikiBaseError struct {
+    Code string `json:"code"`
+    Info string `json:"info"`
+    Misc string `json:"*"`
+}
+
+type WikiBaseArticleEditResponse struct {
+	Edit *WikiBaseArticleEditDetailResponse `json:"edit"`
+	Error *WikiBaseError `json:"error"`
 }
 
 // TODO - clearly needs to die
@@ -200,4 +224,51 @@ func (c *WikiDataClient) GetPropertyForLabel(label string) (string, error) {
 
 func (c *WikiDataClient) GetItemForLabel(label string) (string, error) {
 	return c.getWikibaseThingForLabel(WikiBaseItem, label)
+}
+
+func (c *WikiDataClient) CreateArticle(title string, body string) (int, error) {
+
+	if len(title) == 0 {
+		return 0, fmt.Errorf("Title must not be an empty string.")
+	}
+
+	editToken, terr := c.GetEditingToken()
+	if terr != nil {
+		return 0, terr
+	}
+
+	response, err := c.consumer.Post(
+		fmt.Sprintf("%s/w/api.php", c.URLBase),
+		map[string]string{
+			"action":     "edit",
+			"token":      editToken,
+			"createonly": "true",
+			"title":      fmt.Sprintf("article:%s", title),
+			"text":       body,
+			"format":     "json",
+		},
+		c.AccessToken)
+
+	if err != nil {
+		return 0, err
+	}
+
+//    bytes, _ := ioutil.ReadAll(response.Body)
+//    fmt.Println( "\tResponse Body: " + string(bytes) + "\n" )
+
+	var res WikiBaseArticleEditResponse
+	err = json.NewDecoder(response.Body).Decode(&res)
+	if err != nil {
+		return 0, err
+	}
+
+    if res.Error != nil {
+        return 0, fmt.Errorf("%s: %s", res.Error.Code, res.Error.Info)
+    }
+
+    if res.Edit == nil {
+        return 0, fmt.Errorf("Unexpected response from server: %v", res)
+    }
+
+	return res.Edit.PageID, nil
 }

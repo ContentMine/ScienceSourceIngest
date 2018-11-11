@@ -88,10 +88,10 @@ func (paper Paper) SupplementaryFilesURL() string {
 
 func (paper Paper) WikiDataID() string {
 
-    parts := strings.Split(paper.Item.Value, "/")
-    if len(parts) > 0 {
-        return parts[len(parts) - 1 ]
-    }
+	parts := strings.Split(paper.Item.Value, "/")
+	if len(parts) > 0 {
+		return parts[len(parts)-1]
+	}
 
-    return ""
+	return ""
 }

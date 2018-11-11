@@ -15,6 +15,9 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
+	"os"
 	"reflect"
 )
 
@@ -24,82 +27,80 @@ import (
 type ItemType string
 
 type ScienceSourceAnnotation struct {
-    // Exists purely to let us look up the item ID on sci source
-	Item              ItemType `item:"annotation"`
+	// Exists purely to let us look up the item ID on sci source
+	Item ItemType `item:"annotation"`
 
 	// These fields we know beforehand
-	TermFound         string   `json:"term" property:"term found"`
-	LengthOfTermFound int      `json:"length" property:"length of term found"`
-	WikiDataItemCode  string   `json:"wikidata" property:"Wikidata item code"`
-	DictionaryName    string   `json:"dictionary" property:"dictionary name"`
-	TimeCode          string   `json:"time" property:"time code1"`
+	TermFound         string `json:"term" property:"term found"`
+	LengthOfTermFound int    `json:"length" property:"length of term found"`
+	WikiDataItemCode  string `json:"wikidata" property:"Wikidata item code"`
+	DictionaryName    string `json:"dictionary" property:"dictionary name"`
+	TimeCode          string `json:"time" property:"time code1"`
 
-    // These fields we only know from the science source instance
-	InstanceOf        string   `json:"instance_of" property:"instance of"`
+	// These fields we only know from the science source instance
+	InstanceOf string `json:"instance_of" property:"instance of"`
 
 	// Used to let us look the item up later
-	ScienceSourceItemID   string `json:"id"`
+	ScienceSourceItemID string `json:"id"`
 }
 
 type ScienceSourceAnchorPoint struct {
-    // Exists purely to let us look up the item ID on sci source
-	Item                      ItemType `item:"anchor point"`
+	// Exists purely to let us look up the item ID on sci source
+	Item ItemType `item:"anchor point"`
 
 	// These fields we know beforehand
-	PrecedingPhrase           string   `json:"preceding_phrase" property:"preceding phrase"`
-	FollowingPhrase           string   `json:"following_phrase" property:"following phrase"`
-	DistanceToPreceding       int      `json:"preceding_distance" property:"distance to preceding"`
-	DistanceToFollowing       int      `json:"follow_distance" property:"distance to following"`
-	CharacterNumber           int      `json:"character" property:"character number"`
-	TimeCode                  string   `json:"time" property:"time code1"`
+	PrecedingPhrase     string `json:"preceding_phrase" property:"preceding phrase"`
+	FollowingPhrase     string `json:"following_phrase" property:"following phrase"`
+	DistanceToPreceding int    `json:"preceding_distance" property:"distance to preceding"`
+	DistanceToFollowing int    `json:"following_distance" property:"distance to following"`
+	CharacterNumber     int    `json:"character" property:"character number"`
+	TimeCode            string `json:"time" property:"time code1"`
 
-    // These fields we only know from the science source instance
-	InstanceOf                string   `json:"instance_of" property:"instance of"`
+	// These fields we only know from the science source instance
+	InstanceOf string `json:"instance_of" property:"instance of"`
 
-    // These we only know after we've uploaded the article document
-	ScienceSourceArticleTitle string   `json:"science_source_title" property:"ScienceSource article title"`
+	// These we only know after we've uploaded the article document
+	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
 
-    // These fields we know after we've created the article item
-	AnchorPoint               string   `json:"point" property:"anchor point in"` // Ref to article
+	// These fields we know after we've created the article item
+	AnchorPoint string `json:"point" property:"anchor point in"` // Ref to article
 
 	// These we only know once we've uploaded all the annotations
-	PrecedingAnchorPoint      string  `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
-	FollowingAnchorPoint      string  `json:"follow_anchor" property:"following anchor point"` // Ref to anchor point/terminus
-	Anchors                   string   `json:"anchors" property:"anchors"`
+	PrecedingAnchorPoint string `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
+	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
+	Anchors              string `json:"anchors" property:"anchors"`
 
 	// Used to let us look the item up later
-	ScienceSourceItemID   string `json:"id"`
+	ScienceSourceItemID string `json:"id"`
 
-    // Internal program management
+	// Internal program management
 	Annotation ScienceSourceAnnotation `json:"annotation"`
 }
 
 type ScienceSourceArticle struct {
-    // Exists purely to let us look up the item ID on sci source
-	Item                      ItemType `item:"article"`
+	// Exists purely to let us look up the item ID on sci source
+	Item ItemType `item:"article"`
 
-    // These fields we know beforehand
-	WikiDataItemCode          string   `json:"wikidata" property:"Wikidata item code"`
-	ArticleTextTitle          string   `json:"title" property:"article text title"`
-	PublicationDate           string   `json:"publication_date" property:"publication date"`
-	TimeCode                  string   `json:"time" property:"time code1"`
-	CharacterNumber           int      `json:"character" property:"character number"` // always 0?
-	PrecedingPhrase           string   `json:"preceding_phrase" property:"preceding phrase"`
-	FollowingPhrase           string   `json:"follow_phrase" property:"following phrase"`
+	// These fields we know beforehand
+	WikiDataItemCode string `json:"wikidata" property:"Wikidata item code"`
+	ArticleTextTitle string `json:"title" property:"article text title"`
+	PublicationDate  string `json:"publication_date" property:"publication date"`
+	TimeCode         string `json:"time" property:"time code1"`
+	CharacterNumber  int    `json:"character" property:"character number"` // always 0?
+	PrecedingPhrase  string `json:"preceding_phrase" property:"preceding phrase"`
+	FollowingPhrase  string `json:"following_phrase" property:"following phrase"`
 
-    // These fields we only know from the science source instance
-	InstanceOf                string   `json:"instance_of" property:"instance of"`
+	// These fields we only know from the science source instance
+	InstanceOf string `json:"instance_of" property:"instance of"`
 
-    // These we only know after we've uploaded the article
-	ScienceSourceArticleTitle string   `json:"science_source_title" property:"ScienceSource article title"`
+	// These we only know after we've uploaded the article
+	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
+	PageID                    int `json:"page_id" property:"page ID"`
 
 	// These we only know once we've uploaded all the annotations
-	FollowingAnchorPoint      string  `json:"following_anchor" property:"following anchor point"`
+	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"`
 
-	// Used to let us look the item up later
-	ScienceSourceItemID   string `json:"id"`
-
-    // Internal program management
+	// Internal program management
 	Annotations []ScienceSourceAnchorPoint `json:"annotations"`
 }
 
@@ -108,16 +109,16 @@ type ScienceSourceArticle struct {
 type ScienceSourceClient struct {
 	wikiDataClient *WikiDataClient
 
-	propertyMap map[string]string
-	itemMap     map[string]string
+	PropertyMap map[string]string
+	ItemMap     map[string]string
 }
 
 func NewScienceSourceClient(consumerKey string, consumerSecret string, urlbase string) *ScienceSourceClient {
 
 	res := &ScienceSourceClient{
 		wikiDataClient: NewWikiDataClient(consumerKey, consumerSecret, urlbase),
-		propertyMap: make(map[string]string, 0),
-		itemMap: make(map[string]string, 0),
+		PropertyMap:    make(map[string]string, 0),
+		ItemMap:        make(map[string]string, 0),
 	}
 
 	return res
@@ -131,7 +132,7 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 		if err != nil {
 			return err
 		}
-		c.propertyMap[i] = label
+		c.PropertyMap[i] = label
 	}
 
 	list = getValuesForTags("item")
@@ -140,8 +141,25 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 		if err != nil {
 			return err
 		}
-		c.itemMap[i] = label
+		c.ItemMap[i] = label
 	}
+
+	return nil
+}
+
+func (c *ScienceSourceClient) UploadPaper(article *ScienceSourceArticle, htmlFileName string) error {
+
+	data, err := ioutil.ReadFile(htmlFileName)
+	if err != nil {
+		return err
+	}
+
+	page_id, upload_error := c.wikiDataClient.CreateArticle(article.ScienceSourceArticleTitle, string(data))
+	if upload_error != nil {
+		return upload_error
+	}
+
+	article.PageID = page_id
 
 	return nil
 }
@@ -171,4 +189,30 @@ func getValuesForTags(tagname string) []string {
 	}
 
 	return list
+}
+
+// Article helper functions
+
+func (article *ScienceSourceArticle) Save(filename string) error {
+
+	f, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	return json.NewEncoder(f).Encode(article)
+}
+
+func LoadScienceSourceArticle(filename string) (*ScienceSourceArticle, error) {
+
+	var article ScienceSourceArticle
+
+	f, err := os.Open(filename)
+	if err != nil {
+		return nil, err
+	}
+
+	err = json.NewDecoder(f).Decode(&article)
+	return &article, err
 }
