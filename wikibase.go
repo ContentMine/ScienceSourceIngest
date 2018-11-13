@@ -17,6 +17,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strings"
 	"sync"
 
@@ -69,23 +70,40 @@ type WikiBaseSearchResponse struct {
 type WikiBaseArticleEditDetailResponse struct {
 	ContentModel  string  `json:"contentmodel"`
 	New           *string `json:"new"`
-	NewRevisionID int  `json:"newrevid"`
-	OldRevisionID int  `json:"oldrevid"`
+	NewRevisionID int     `json:"newrevid"`
+	OldRevisionID int     `json:"oldrevid"`
 	NewTimeStamp  string  `json:"newtimestamp"`
-	PageID        int  `json:"pageid"`
+	PageID        int     `json:"pageid"`
 	Result        string  `json:"result"`
 	Title         string  `json:"title"`
 }
 
 type WikiBaseError struct {
-    Code string `json:"code"`
-    Info string `json:"info"`
-    Misc string `json:"*"`
+	Code string `json:"code"`
+	Info string `json:"info"`
 }
 
 type WikiBaseArticleEditResponse struct {
-	Edit *WikiBaseArticleEditDetailResponse `json:"edit"`
-	Error *WikiBaseError `json:"error"`
+	Edit  *WikiBaseArticleEditDetailResponse `json:"edit"`
+	Error *WikiBaseError                     `json:"error"`
+}
+
+type WikiBaseItemLabel struct {
+	Language string `json:"language"`
+	Value    string `json:"value"`
+}
+
+type WikiBaseItemEntity struct {
+	Labels         map[string]WikiBaseItemLabel `json:"labels"`
+	ID             string                       `json:"id"`
+	Type           string                       `json:"type"`
+	LastRevisionID int                          `json:"lastrevid"`
+}
+
+type WikiBaseItemEditResponse struct {
+	Entity  *WikiBaseItemEntity `json:"entity"`
+	Success int                 `json:"success"`
+	Error   *WikiBaseError      `json:"error"`
 }
 
 // TODO - clearly needs to die
@@ -229,7 +247,7 @@ func (c *WikiDataClient) GetItemForLabel(label string) (string, error) {
 func (c *WikiDataClient) CreateArticle(title string, body string) (int, error) {
 
 	if len(title) == 0 {
-		return 0, fmt.Errorf("Title must not be an empty string.")
+		return 0, fmt.Errorf("Article title must not be an empty string.")
 	}
 
 	editToken, terr := c.GetEditingToken()
@@ -253,22 +271,73 @@ func (c *WikiDataClient) CreateArticle(title string, body string) (int, error) {
 		return 0, err
 	}
 
-//    bytes, _ := ioutil.ReadAll(response.Body)
-//    fmt.Println( "\tResponse Body: " + string(bytes) + "\n" )
-
 	var res WikiBaseArticleEditResponse
 	err = json.NewDecoder(response.Body).Decode(&res)
 	if err != nil {
 		return 0, err
 	}
 
-    if res.Error != nil {
-        return 0, fmt.Errorf("%s: %s", res.Error.Code, res.Error.Info)
-    }
+	if res.Error != nil {
+		return 0, fmt.Errorf("%s: %s", res.Error.Code, res.Error.Info)
+	}
 
-    if res.Edit == nil {
-        return 0, fmt.Errorf("Unexpected response from server: %v", res)
-    }
+	if res.Edit == nil {
+		return 0, fmt.Errorf("Unexpected response from server: %v", res)
+	}
 
 	return res.Edit.PageID, nil
 }
+
+func (c *WikiDataClient) CreateItemInstance(label string) (string, error) {
+
+	if len(label) == 0 {
+		return "", fmt.Errorf("Item label must not be an empty string.")
+	}
+
+	editToken, terr := c.GetEditingToken()
+	if terr != nil {
+		return "", terr
+	}
+
+	response, err := c.consumer.Post(
+		fmt.Sprintf("%s/w/api.php", c.URLBase),
+		map[string]string{
+			"action": "wbeditentity",
+			"token":  editToken,
+			"new":    "item",
+			"data":   fmt.Sprintf("{\"labels\": {\"en\": {\"language\": \"en\", \"value\": \"%s\"}}}", label),
+			"format": "json",
+		},
+		c.AccessToken)
+
+	if err != nil {
+		return "", err
+	}
+
+	var res WikiBaseItemEditResponse
+	err = json.NewDecoder(response.Body).Decode(&res)
+	if err != nil {
+		return "", err
+	}
+
+	if res.Error != nil {
+		return "", fmt.Errorf("%s: %s", res.Error.Code, res.Error.Info)
+	}
+
+	if res.Success != 1 {
+		return "", fmt.Errorf("We got an unexpected success value: %v", res)
+	}
+
+	if res.Entity == nil {
+		return "", fmt.Errorf("Unexpected response from server: %v", res)
+	}
+
+	return res.Entity.ID, nil
+}
+
+/*func (c *WikiDataClient) PopulateItemFromStruct(itemID string, value &Value) error {
+
+    t = reflect.TypeOf(value)
+
+
+}*/

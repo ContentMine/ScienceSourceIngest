@@ -161,11 +161,11 @@ func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
 
 func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArticle {
 	article := &ScienceSourceArticle{
-		WikiDataItemCode: processor.Paper.WikiDataID(),
-		ArticleTextTitle: processor.Paper.Title.Value,
+		WikiDataItemCode:          processor.Paper.WikiDataID(),
+		ArticleTextTitle:          processor.Paper.Title.Value,
 		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.ID()),
-		PublicationDate:  processor.Paper.Date.Value,
-		TimeCode:         time.Now().String(),
+		PublicationDate:           processor.Paper.Date.Value,
+		TimeCode:                  time.Now().String(),
 	}
 
 	return article
@@ -392,6 +392,32 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 			return err
 		}
 	}
+
+	// Creating all the wikibase items related to the paper is a two pass process, due to the fact that
+	// the virtual data structure that is described in [0] and related examples has two way links between
+	// items (e.g., an Anchor Node item references an Annotation item, and that Annotation item needs to
+	// refer to the Anchor Node).
+	//
+	// So to simplify the logic we only add properties to items once we have created all the items, as that's
+	// the only time when we have all the information about all properties for each item.
+	//
+	// [0] https://sciencesource.wmflabs.org/wiki/Data_schema
+	upload_err := sciSourceClient.CreateArticleItemTree(processor.ScienceSourceRecord)
+	// regardless of whether we error, do another save to record any partial changes to the tree
+	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
+	if err != nil || upload_err != nil {
+
+		// if we had two errors combine them into one
+		if err != nil && upload_err != nil {
+			err = fmt.Errorf("Failed to both create wikibase items (%v) and save state (%v)", upload_err, err)
+		} else if upload_err != nil {
+			err = upload_err
+		}
+
+		return err
+	}
+
+	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
 
 	return nil
 }

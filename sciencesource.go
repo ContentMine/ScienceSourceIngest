@@ -27,8 +27,9 @@ import (
 type ItemType string
 
 type ScienceSourceAnnotation struct {
-	// Exists purely to let us look up the item ID on sci source
-	Item ItemType `item:"annotation"`
+	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
+	// wikibase item ID when we cache state to disk
+	Item ItemType `json:"item" item:"annotation"`
 
 	// These fields we know beforehand
 	TermFound         string `json:"term" property:"term found"`
@@ -45,8 +46,9 @@ type ScienceSourceAnnotation struct {
 }
 
 type ScienceSourceAnchorPoint struct {
-	// Exists purely to let us look up the item ID on sci source
-	Item ItemType `item:"anchor point"`
+	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
+	// wikibase item ID when we cache state to disk
+	Item ItemType `json:"item" item:"anchor point"`
 
 	// These fields we know beforehand
 	PrecedingPhrase     string `json:"preceding_phrase" property:"preceding phrase"`
@@ -78,8 +80,9 @@ type ScienceSourceAnchorPoint struct {
 }
 
 type ScienceSourceArticle struct {
-	// Exists purely to let us look up the item ID on sci source
-	Item ItemType `item:"article"`
+	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
+	// wikibase item ID when we cache state to disk
+	Item ItemType `json:"item" item:"article"`
 
 	// These fields we know beforehand
 	WikiDataItemCode string `json:"wikidata" property:"Wikidata item code"`
@@ -95,7 +98,7 @@ type ScienceSourceArticle struct {
 
 	// These we only know after we've uploaded the article
 	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
-	PageID                    int `json:"page_id" property:"page ID"`
+	PageID                    int    `json:"page_id" property:"page ID"`
 
 	// These we only know once we've uploaded all the annotations
 	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"`
@@ -215,4 +218,44 @@ func LoadScienceSourceArticle(filename string) (*ScienceSourceArticle, error) {
 
 	err = json.NewDecoder(f).Decode(&article)
 	return &article, err
+}
+
+// Wiki base item related code
+
+func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticle) error {
+
+	// Create the node for the article in the wiki base if necessary
+	if len(article.Item) == 0 {
+		item_id, err := c.wikiDataClient.CreateItemInstance("article")
+		if err != nil {
+			return err
+		}
+		article.Item = item_id
+	}
+
+	// Create an item for all the anchors and their articles
+	for _, anchor := range article.Annotations {
+
+		if len(anchor.Item) == 0 {
+			item_id, err := c.wikiDataClient.CreateItemInstance("anchor")
+			if err != nil {
+				return err
+			}
+			anchor.Item = item_id
+		}
+
+		if len(anchor.Annotation.Item) == 0 {
+			item_id, err := c.wikiDataClient.CreateItemInstance("anchor")
+			if err != nil {
+				return err
+			}
+			anchor.Annotation.Item = item_id
+		}
+	}
+
+	return nil
+}
+
+func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
+
 }
