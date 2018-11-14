@@ -316,7 +316,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			Annotation: annotation,
 		}
 
-		res = append(res, anchorPoint)
+		res[i] = anchorPoint
 	}
 
 	return res, nil
@@ -335,47 +335,47 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	processor.ScienceSourceRecord, err = LoadScienceSourceArticle(processor.targetScienceSourceStateFileName())
 	if err != nil {
 		processor.ScienceSourceRecord = processor.populateScienceSourceArticle()
-	}
 
-	err = processor.fetchPaperTextToDisk()
-	if err != nil {
-		return err
-	}
+		err = processor.fetchPaperTextToDisk()
+		if err != nil {
+			return err
+		}
 
-	err = processor.fetchPaperSupplementaryFilesToDisk()
-	if err != nil {
-		return err
-	}
+		err = processor.fetchPaperSupplementaryFilesToDisk()
+		if err != nil {
+			return err
+		}
 
-	openXMLdoc, xml_err := LoadPaperXMLFromFile(processor.targetXMLFileName())
-	if xml_err != nil {
-		return xml_err
-	}
+		openXMLdoc, xml_err := LoadPaperXMLFromFile(processor.targetXMLFileName())
+		if xml_err != nil {
+			return xml_err
+		}
 
-	err = processor.processXMLToHTML(openXMLdoc.FirstAuthor())
-	if err != nil {
-		return err
-	}
+		err = processor.processXMLToHTML(openXMLdoc.FirstAuthor())
+		if err != nil {
+			return err
+		}
 
-	err = processor.processXMLToText()
-	if err != nil {
-		return err
-	}
+		err = processor.processXMLToText()
+		if err != nil {
+			return err
+		}
 
-	annotations, aerr := processor.findAnnotations(dictionaries, openXMLdoc.Title(),
-		openXMLdoc.JournalTitle())
-	if aerr != nil {
-		return aerr
-	}
-	log.Printf("Count %d", len(annotations))
+		annotations, aerr := processor.findAnnotations(dictionaries, openXMLdoc.Title(),
+			openXMLdoc.JournalTitle())
+		if aerr != nil {
+			return aerr
+		}
 
-	processor.ScienceSourceRecord.Annotations = annotations
+		processor.ScienceSourceRecord.Annotations = annotations
 
-	// Save the record with annotations
-	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
-	if err != nil {
-		return err
+		// Save the record with annotations
+		err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
+		if err != nil {
+			return err
+		}
 	}
+	log.Printf("Count %d", len(processor.ScienceSourceRecord.Annotations))
 
 	if processor.ScienceSourceRecord.PageID == 0 {
 		log.Printf("Uploading paper %s", processor.Paper.ID())

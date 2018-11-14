@@ -16,6 +16,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"os"
 	"reflect"
@@ -42,9 +43,6 @@ type ScienceSourceAnnotation struct {
 
 	// These fields we only know from the science source instance
 	InstanceOf string `json:"instance_of" property:"instance of"`
-
-	// Used to let us look the item up later
-	ScienceSourceItemID string `json:"id"`
 }
 
 type ScienceSourceAnchorPoint struct {
@@ -73,9 +71,6 @@ type ScienceSourceAnchorPoint struct {
 	PrecedingAnchorPoint string `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
 	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
 	Anchors              string `json:"anchors" property:"anchors"`
-
-	// Used to let us look the item up later
-	ScienceSourceItemID string `json:"id"`
 
 	// Internal program management
 	Annotation ScienceSourceAnnotation `json:"annotation"`
@@ -135,20 +130,35 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 
 	list := getValuesForTags("property")
 	for _, i := range list {
-		label, err := c.wikiBaseClient.GetPropertyForLabel(i)
+		labels, err := c.wikiBaseClient.GetPropertyIDsForLabel(i)
 		if err != nil {
 			return err
 		}
-		c.PropertyMap[i] = label
+		switch len(labels) {
+		case 0:
+			return fmt.Errorf("No property ID was found for %s", i)
+		case 1:
+			c.PropertyMap[i] = labels[0]
+		default:
+			return fmt.Errorf("Multiple property IDs found for %s: %v", i, labels)
+		}
 	}
 
 	list = getValuesForTags("item")
+	list = append(list, "terminus")
 	for _, i := range list {
-		label, err := c.wikiBaseClient.GetItemForLabel(i)
+		labels, err := c.wikiBaseClient.GetItemIDsForLabel(i)
 		if err != nil {
 			return err
 		}
-		c.ItemMap[i] = label
+		switch len(labels) {
+		case 0:
+			return fmt.Errorf("No item ID was found for %s", i)
+		case 1:
+			c.ItemMap[i] = labels[0]
+		default:
+			return fmt.Errorf("Multiple item IDs found for %s: %v", i, labels)
+		}
 	}
 
 	return nil
@@ -163,7 +173,16 @@ func (c *ScienceSourceClient) UploadPaper(article *ScienceSourceArticle, htmlFil
 
 	page_id, upload_error := c.wikiBaseClient.CreateArticle(article.ScienceSourceArticleTitle, string(data))
 	if upload_error != nil {
-		return upload_error
+
+		// if we get a page exists error then ignore for now and move on, as we assume the title is unique
+		ignore_error := false
+		if err, ok := upload_error.(*wikibase.WikiBaseError); ok {
+			ignore_error = err.Code == "articleexists"
+		}
+
+		if ignore_error != true {
+			return upload_error
+		}
 	}
 
 	article.PageID = page_id
@@ -230,7 +249,7 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 
 	// Create the node for the article in the wiki base if necessary
 	if len(article.Item) == 0 {
-		item_id, err := c.wikiBaseClient.CreateItemInstance("article")
+		item_id, err := c.wikiBaseClient.CreateItemInstance("article instance")
 		if err != nil {
 			return err
 		}
@@ -238,22 +257,22 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 	}
 
 	// Create an item for all the anchors and their articles
-	for _, anchor := range article.Annotations {
+	for i := 0; i < len(article.Annotations); i++ {
 
-		if len(anchor.Item) == 0 {
-			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor")
+		if len(article.Annotations[i].Item) == 0 {
+			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor instance")
 			if err != nil {
 				return err
 			}
-			anchor.Item = ItemType(item_id)
+			article.Annotations[i].Item = ItemType(item_id)
 		}
 
-		if len(anchor.Annotation.Item) == 0 {
-			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor")
+		if len(article.Annotations[i].Annotation.Item) == 0 {
+			item_id, err := c.wikiBaseClient.CreateItemInstance("annotation instance")
 			if err != nil {
 				return err
 			}
-			anchor.Annotation.Item = ItemType(item_id)
+			article.Annotations[i].Annotation.Item = ItemType(item_id)
 		}
 	}
 
