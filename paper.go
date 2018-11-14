@@ -163,7 +163,7 @@ func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArt
 	article := &ScienceSourceArticle{
 		WikiDataItemCode:          processor.Paper.WikiDataID(),
 		ArticleTextTitle:          processor.Paper.Title.Value,
-		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.WikiDataID()),
+		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.ID()),
 		PublicationDate:           processor.Paper.Date.Value,
 		TimeCode:                  time.Now().String(),
 	}
@@ -418,6 +418,14 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	}
 
 	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
+	err = sciSourceClient.ReconsileArticleItemTree(processor.ScienceSourceRecord)
+	if err != nil {
+	    return err
+	}
+    err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
+    if err != nil {
+        return err
+    }
 
 	return nil
 }

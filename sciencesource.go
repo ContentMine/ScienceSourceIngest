@@ -41,6 +41,9 @@ type ScienceSourceAnnotation struct {
 	DictionaryName    string `json:"dictionary" property:"dictionary name"`
 	TimeCode          string `json:"time" property:"time code1"`
 
+	// These fields we know after we've created the anchor point item
+	BasedOn string `json:"based_on" property:"based on"` // Ref to article
+
 	// These fields we only know from the science source instance
 	InstanceOf string `json:"instance_of" property:"instance of"`
 }
@@ -82,20 +85,20 @@ type ScienceSourceArticle struct {
 	Item ItemType `json:"item" item:"article"`
 
 	// These fields we know beforehand
-	WikiDataItemCode string `json:"wikidata" property:"Wikidata item code"`
-	ArticleTextTitle string `json:"title" property:"article text title"`
-	PublicationDate  string `json:"publication_date" property:"publication date"`
-	TimeCode         string `json:"time" property:"time code1"`
-	CharacterNumber  int    `json:"character" property:"character number"` // always 0?
-	PrecedingPhrase  string `json:"preceding_phrase" property:"preceding phrase"`
-	FollowingPhrase  string `json:"following_phrase" property:"following phrase"`
+	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
+	WikiDataItemCode          string `json:"wikidata" property:"Wikidata item code"`
+	ArticleTextTitle          string `json:"title" property:"article text title"`
+	PublicationDate           string `json:"publication_date" property:"publication date"`
+	TimeCode                  string `json:"time" property:"time code1"`
+	CharacterNumber           int    `json:"character" property:"character number"` // always 0?
+	PrecedingPhrase           string `json:"preceding_phrase" property:"preceding phrase"`
+	FollowingPhrase           string `json:"following_phrase" property:"following phrase"`
 
 	// These fields we only know from the science source instance
 	InstanceOf string `json:"instance_of" property:"instance of"`
 
 	// These we only know after we've uploaded the article
-	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
-	PageID                    int    `json:"page_id" property:"page ID"`
+	PageID int `json:"page_id" property:"page ID"`
 
 	// These we only know once we've uploaded all the annotations
 	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"`
@@ -279,6 +282,43 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 	return nil
 }
 
+func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArticle) error {
+
+	// Patch the article first
+	article.InstanceOf = c.ItemMap["article"]
+	if len(article.Annotations) == 0 {
+		article.FollowingAnchorPoint = c.ItemMap["terminus"]
+	} else {
+		article.FollowingAnchorPoint = string(article.Annotations[0].Item)
+	}
+
+	for i := 0; i < len(article.Annotations); i++ {
+
+		// Patch anchor point first
+		article.Annotations[i].InstanceOf = c.ItemMap["anchor point"]
+		article.Annotations[i].ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
+		if i != 0 {
+			article.Annotations[i].PrecedingAnchorPoint = string(article.Annotations[i-1].Item)
+		} else {
+			article.Annotations[i].PrecedingAnchorPoint = c.ItemMap["terminus"]
+		}
+		if i != len(article.Annotations)-1 {
+			article.Annotations[i].FollowingAnchorPoint = string(article.Annotations[i+1].Item)
+		} else {
+			article.Annotations[i].PrecedingAnchorPoint = c.ItemMap["terminus"]
+		}
+		article.Annotations[i].AnchorPoint = string(article.Item)
+		article.Annotations[i].Anchors = string(article.Annotations[i].Annotation.Item)
+
+		// Patch annotation second
+		article.Annotations[i].Annotation.InstanceOf = c.ItemMap["annotation"]
+		article.Annotations[i].Annotation.BasedOn = string(article.Annotations[i].Item)
+	}
+
+	return nil
+}
+
 func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
+
 	return nil
 }
