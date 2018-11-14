@@ -19,6 +19,8 @@ import (
 	//    "fmt"
 	"log"
 	"sync"
+
+	"github.com/mdales/wikibase"
 )
 
 // These will be set by the build script to something meaningful
@@ -36,10 +38,12 @@ func main() {
 	var target_path string
 	var dictionaries_path string
 	var url_base string
+	var oauth_tokens_path string
 	flag.StringVar(&feed_path, "feed", "", "JSON feed of papers, required")
 	flag.StringVar(&target_path, "output", ".", "Directory to store the results, required")
 	flag.StringVar(&dictionaries_path, "dictionaries", "", "Directory of dictionaries to load.")
 	flag.StringVar(&url_base, "urlbase", "http://localhost:8181", "Base URL for science source.")
+	flag.StringVar(&oauth_tokens_path, "oauth", "oauth.json", "JSON file with oauth credentials in.")
 	flag.Parse()
 
 	log.Printf("Feed to parse: %s", feed_path)
@@ -71,7 +75,11 @@ func main() {
 	}
 
 	// Connect to Science Source instance and get any information we need
-	sciSourceClient := NewScienceSourceClient(WikiBaseConsumerKey, WikiBaseConsumerSecret, url_base)
+	oauthInfo, load_err := wikibase.LoadOauthInformation(oauth_tokens_path)
+	if load_err != nil {
+		panic(load_err)
+	}
+	sciSourceClient := NewScienceSourceClient(oauthInfo, url_base)
 	err = sciSourceClient.GetPropertyAndItemConfigurationFromServer()
 	if err != nil {
 		panic(err)

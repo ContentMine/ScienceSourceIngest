@@ -19,6 +19,8 @@ import (
 	"io/ioutil"
 	"os"
 	"reflect"
+
+	"github.com/mdales/wikibase"
 )
 
 // Encoding of structures in json comes from data schema found here:
@@ -110,16 +112,18 @@ type ScienceSourceArticle struct {
 // terminus needs looking up too
 
 type ScienceSourceClient struct {
-	wikiDataClient *WikiDataClient
+	wikiBaseClient *wikibase.WikiBaseClient
 
 	PropertyMap map[string]string
 	ItemMap     map[string]string
 }
 
-func NewScienceSourceClient(consumerKey string, consumerSecret string, urlbase string) *ScienceSourceClient {
+func NewScienceSourceClient(oauthInfo wikibase.WikiBaseOAuthInformation, urlbase string) *ScienceSourceClient {
+
+	oauth_client := wikibase.NewOAuthClient(oauthInfo, urlbase)
 
 	res := &ScienceSourceClient{
-		wikiDataClient: NewWikiDataClient(consumerKey, consumerSecret, urlbase),
+		wikiBaseClient: wikibase.NewWikiBaseClient(oauth_client),
 		PropertyMap:    make(map[string]string, 0),
 		ItemMap:        make(map[string]string, 0),
 	}
@@ -131,7 +135,7 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 
 	list := getValuesForTags("property")
 	for _, i := range list {
-		label, err := c.wikiDataClient.GetPropertyForLabel(i)
+		label, err := c.wikiBaseClient.GetPropertyForLabel(i)
 		if err != nil {
 			return err
 		}
@@ -140,7 +144,7 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 
 	list = getValuesForTags("item")
 	for _, i := range list {
-		label, err := c.wikiDataClient.GetItemForLabel(i)
+		label, err := c.wikiBaseClient.GetItemForLabel(i)
 		if err != nil {
 			return err
 		}
@@ -157,7 +161,7 @@ func (c *ScienceSourceClient) UploadPaper(article *ScienceSourceArticle, htmlFil
 		return err
 	}
 
-	page_id, upload_error := c.wikiDataClient.CreateArticle(article.ScienceSourceArticleTitle, string(data))
+	page_id, upload_error := c.wikiBaseClient.CreateArticle(article.ScienceSourceArticleTitle, string(data))
 	if upload_error != nil {
 		return upload_error
 	}
@@ -226,30 +230,30 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 
 	// Create the node for the article in the wiki base if necessary
 	if len(article.Item) == 0 {
-		item_id, err := c.wikiDataClient.CreateItemInstance("article")
+		item_id, err := c.wikiBaseClient.CreateItemInstance("article")
 		if err != nil {
 			return err
 		}
-		article.Item = item_id
+		article.Item = ItemType(item_id)
 	}
 
 	// Create an item for all the anchors and their articles
 	for _, anchor := range article.Annotations {
 
 		if len(anchor.Item) == 0 {
-			item_id, err := c.wikiDataClient.CreateItemInstance("anchor")
+			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor")
 			if err != nil {
 				return err
 			}
-			anchor.Item = item_id
+			anchor.Item = ItemType(item_id)
 		}
 
 		if len(anchor.Annotation.Item) == 0 {
-			item_id, err := c.wikiDataClient.CreateItemInstance("anchor")
+			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor")
 			if err != nil {
 				return err
 			}
-			anchor.Annotation.Item = item_id
+			anchor.Annotation.Item = ItemType(item_id)
 		}
 	}
 
@@ -257,5 +261,5 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 }
 
 func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
-
+	return nil
 }
