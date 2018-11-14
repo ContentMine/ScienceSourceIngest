@@ -42,10 +42,10 @@ type ScienceSourceAnnotation struct {
 	TimeCode          string `json:"time" property:"time code1"`
 
 	// These fields we know after we've created the anchor point item
-	BasedOn string `json:"based_on" property:"based on"` // Ref to article
+	BasedOn ItemType `json:"based_on" property:"based on"` // Ref to article
 
 	// These fields we only know from the science source instance
-	InstanceOf string `json:"instance_of" property:"instance of"`
+	InstanceOf ItemType `json:"instance_of" property:"instance of"`
 }
 
 type ScienceSourceAnchorPoint struct {
@@ -62,18 +62,18 @@ type ScienceSourceAnchorPoint struct {
 	TimeCode            string `json:"time" property:"time code1"`
 
 	// These fields we only know from the science source instance
-	InstanceOf string `json:"instance_of" property:"instance of"`
+	InstanceOf ItemType `json:"instance_of" property:"instance of"`
 
 	// These we only know after we've uploaded the article document
 	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
 
 	// These fields we know after we've created the article item
-	AnchorPoint string `json:"point" property:"anchor point in"` // Ref to article
+	AnchorPoint ItemType `json:"point" property:"anchor point in"` // Ref to article
 
 	// These we only know once we've uploaded all the annotations
-	PrecedingAnchorPoint string `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
-	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
-	Anchors              string `json:"anchors" property:"anchors"`
+	PrecedingAnchorPoint ItemType `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
+	FollowingAnchorPoint ItemType `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
+	Anchors              ItemType `json:"anchors" property:"anchors"`
 
 	// Internal program management
 	Annotation ScienceSourceAnnotation `json:"annotation"`
@@ -95,13 +95,13 @@ type ScienceSourceArticle struct {
 	FollowingPhrase           string `json:"following_phrase" property:"following phrase"`
 
 	// These fields we only know from the science source instance
-	InstanceOf string `json:"instance_of" property:"instance of"`
+	InstanceOf ItemType `json:"instance_of" property:"instance of"`
 
 	// These we only know after we've uploaded the article
 	PageID int `json:"page_id" property:"page ID"`
 
 	// These we only know once we've uploaded all the annotations
-	FollowingAnchorPoint string `json:"following_anchor" property:"following anchor point"`
+	FollowingAnchorPoint ItemType `json:"following_anchor" property:"following anchor point"`
 
 	// Internal program management
 	Annotations []ScienceSourceAnchorPoint `json:"annotations"`
@@ -113,7 +113,7 @@ type ScienceSourceClient struct {
 	wikiBaseClient *wikibase.WikiBaseClient
 
 	PropertyMap map[string]string
-	ItemMap     map[string]string
+	ItemMap     map[string]ItemType
 }
 
 func NewScienceSourceClient(oauthInfo wikibase.WikiBaseOAuthInformation, urlbase string) *ScienceSourceClient {
@@ -123,7 +123,7 @@ func NewScienceSourceClient(oauthInfo wikibase.WikiBaseOAuthInformation, urlbase
 	res := &ScienceSourceClient{
 		wikiBaseClient: wikibase.NewWikiBaseClient(oauth_client),
 		PropertyMap:    make(map[string]string, 0),
-		ItemMap:        make(map[string]string, 0),
+		ItemMap:        make(map[string]ItemType, 0),
 	}
 
 	return res
@@ -158,7 +158,7 @@ func (c *ScienceSourceClient) GetPropertyAndItemConfigurationFromServer() error 
 		case 0:
 			return fmt.Errorf("No item ID was found for %s", i)
 		case 1:
-			c.ItemMap[i] = labels[0]
+			c.ItemMap[i] = ItemType(labels[0])
 		default:
 			return fmt.Errorf("Multiple item IDs found for %s: %v", i, labels)
 		}
@@ -289,7 +289,7 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 	if len(article.Annotations) == 0 {
 		article.FollowingAnchorPoint = c.ItemMap["terminus"]
 	} else {
-		article.FollowingAnchorPoint = string(article.Annotations[0].Item)
+		article.FollowingAnchorPoint = article.Annotations[0].Item
 	}
 
 	for i := 0; i < len(article.Annotations); i++ {
@@ -298,21 +298,21 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		article.Annotations[i].InstanceOf = c.ItemMap["anchor point"]
 		article.Annotations[i].ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
 		if i != 0 {
-			article.Annotations[i].PrecedingAnchorPoint = string(article.Annotations[i-1].Item)
+			article.Annotations[i].PrecedingAnchorPoint = article.Annotations[i-1].Item
 		} else {
 			article.Annotations[i].PrecedingAnchorPoint = c.ItemMap["terminus"]
 		}
 		if i != len(article.Annotations)-1 {
-			article.Annotations[i].FollowingAnchorPoint = string(article.Annotations[i+1].Item)
+			article.Annotations[i].FollowingAnchorPoint = article.Annotations[i+1].Item
 		} else {
 			article.Annotations[i].PrecedingAnchorPoint = c.ItemMap["terminus"]
 		}
-		article.Annotations[i].AnchorPoint = string(article.Item)
-		article.Annotations[i].Anchors = string(article.Annotations[i].Annotation.Item)
+		article.Annotations[i].AnchorPoint = article.Item
+		article.Annotations[i].Anchors = article.Annotations[i].Annotation.Item
 
 		// Patch annotation second
 		article.Annotations[i].Annotation.InstanceOf = c.ItemMap["annotation"]
-		article.Annotations[i].Annotation.BasedOn = string(article.Annotations[i].Item)
+		article.Annotations[i].Annotation.BasedOn = article.Annotations[i].Item
 	}
 
 	return nil
