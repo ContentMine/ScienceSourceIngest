@@ -163,7 +163,7 @@ func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArt
 	article := &ScienceSourceArticle{
 		WikiDataItemCode:          processor.Paper.WikiDataID(),
 		ArticleTextTitle:          processor.Paper.Title.Value,
-		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.ID()),
+		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.WikiDataID()),
 		PublicationDate:           processor.Paper.Date.Value,
 		TimeCode:                  time.Now().String(),
 	}
