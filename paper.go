@@ -165,7 +165,7 @@ func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArt
 		ArticleTextTitle:          processor.Paper.Title.Value,
 		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.ID()),
 		PublicationDate:           processor.Paper.Date.Value,
-		TimeCode:                  time.Now().String(),
+		TimeCode:                  time.Now(),
 	}
 
 	return article
@@ -295,7 +295,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			distanceToFollowing = total_matches[i+1].Offset - match.Offset
 		}
 
-		now := time.Now().String() // TODO: Format properly
+		now := time.Now() // TODO: Format properly
 
 		annotation := ScienceSourceAnnotation{
 			TermFound:         match.Entry.Term,
@@ -420,12 +420,12 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
 	err = sciSourceClient.ReconsileArticleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
-	    return err
+		return err
 	}
-    err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
-    if err != nil {
-        return err
-    }
+	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
+	if err != nil {
+		return err
+	}
 
 	return nil
 }

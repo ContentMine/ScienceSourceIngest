@@ -80,7 +80,7 @@ func main() {
 		panic(load_err)
 	}
 	sciSourceClient := NewScienceSourceClient(oauthInfo, url_base)
-	err = sciSourceClient.GetPropertyAndItemConfigurationFromServer()
+	err = sciSourceClient.GetConfigurationFromServer()
 	if err != nil {
 		panic(err)
 	}
