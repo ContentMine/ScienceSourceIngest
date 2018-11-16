@@ -85,11 +85,11 @@ type ScienceSourceArticle struct {
 	ScienceSourceArticleTitle string    `json:"science_source_title" property:"ScienceSource article title"`
 	WikiDataItemCode          string    `json:"wikidata" property:"Wikidata item code"`
 	ArticleTextTitle          string    `json:"title" property:"article text title"`
-	PublicationDate           string    `json:"publication_date" property:"publication date"`
+	PublicationDate           time.Time `json:"publication_date" property:"publication date"`
 	TimeCode                  time.Time `json:"time" property:"time code1"`
 	CharacterNumber           int       `json:"character" property:"character number"` // always 0?
-	PrecedingPhrase           string    `json:"preceding_phrase" property:"preceding phrase"`
-	FollowingPhrase           string    `json:"following_phrase" property:"following phrase"`
+	//PrecedingPhrase           string    `json:"preceding_phrase" property:"preceding phrase"`
+	//FollowingPhrase           string    `json:"following_phrase" property:"following phrase"`
 
 	// These fields we only know from the science source instance
 	InstanceOf wikibase.ItemPropertyType `json:"instance_of" property:"instance of"`
@@ -255,7 +255,7 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		if i != len(article.Annotations)-1 {
 			article.Annotations[i].FollowingAnchorPoint = article.Annotations[i+1].Item
 		} else {
-			article.Annotations[i].PrecedingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
+			article.Annotations[i].FollowingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
 		}
 		article.Annotations[i].AnchorPoint = article.Item
 		article.Annotations[i].Anchors = article.Annotations[i].Annotation.Item
@@ -270,5 +270,21 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 
 func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
 
-	return nil
+    err := c.wikiBaseClient.UploadClaimsForItem(article.Item, *article)
+    if err != nil {
+        return err
+    }
+
+	for i := 0; i < len(article.Annotations); i++ {
+        err := c.wikiBaseClient.UploadClaimsForItem(article.Annotations[i].Item, article.Annotations[i])
+        if err != nil {
+            return err
+        }
+        err = c.wikiBaseClient.UploadClaimsForItem(article.Annotations[i].Annotation.Item, article.Annotations[i].Annotation)
+        if err != nil {
+            return err
+        }
+    }
+
+    return nil
 }

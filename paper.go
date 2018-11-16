@@ -24,6 +24,7 @@ import (
 	"os/exec"
 	"path"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -114,7 +115,7 @@ func findPhrase(prose []byte, startOffset int, direction SearchDirection) string
 		startOffset, targetOffset = targetOffset, startOffset
 	}
 
-	return string(prose[startOffset:targetOffset])
+	return strings.TrimSpace(string(prose[startOffset:targetOffset]))
 }
 
 // Computed properties
@@ -159,16 +160,25 @@ func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
 
 // Main processing functions
 
-func (processor PaperProcessor) populateScienceSourceArticle() *ScienceSourceArticle {
+func (processor PaperProcessor) populateScienceSourceArticle() (*ScienceSourceArticle, error) {
+
+    pubDate, err := processor.Paper.PublicationDate()
+    if err != nil {
+        return nil, err
+    }
+
+    now := time.Now()
+    today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
+
 	article := &ScienceSourceArticle{
 		WikiDataItemCode:          processor.Paper.WikiDataID(),
 		ArticleTextTitle:          processor.Paper.Title.Value,
 		ScienceSourceArticleTitle: fmt.Sprintf("%s (%s)", processor.Paper.Title.Value, processor.Paper.ID()),
-		PublicationDate:           processor.Paper.Date.Value,
-		TimeCode:                  time.Now(),
+		PublicationDate:           pubDate,
+		TimeCode:                  today,
 	}
 
-	return article
+	return article, nil
 }
 
 func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) error {
@@ -295,14 +305,15 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			distanceToFollowing = total_matches[i+1].Offset - match.Offset
 		}
 
-		now := time.Now() // TODO: Format properly
+		now := time.Now()
+		today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
 
 		annotation := ScienceSourceAnnotation{
 			TermFound:         match.Entry.Term,
 			DictionaryName:    match.Dictionary.Identifier,
 			WikiDataItemCode:  match.Entry.Identifiers.WikiData,
 			LengthOfTermFound: len(match.Entry.Term),
-			TimeCode:          now,
+			TimeCode:          today,
 		}
 
 		anchorPoint := ScienceSourceAnchorPoint{
@@ -311,7 +322,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			DistanceToPreceding: distanceToPreceding,
 			DistanceToFollowing: distanceToFollowing,
 			CharacterNumber:     match.Offset,
-			TimeCode:            now,
+			TimeCode:            today,
 
 			Annotation: annotation,
 		}
@@ -334,7 +345,10 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	// Have we already processed this paper?
 	processor.ScienceSourceRecord, err = LoadScienceSourceArticle(processor.targetScienceSourceStateFileName())
 	if err != nil {
-		processor.ScienceSourceRecord = processor.populateScienceSourceArticle()
+		processor.ScienceSourceRecord, err = processor.populateScienceSourceArticle()
+		if err != nil {
+		    return err
+		}
 
 		err = processor.fetchPaperTextToDisk()
 		if err != nil {
@@ -425,6 +439,10 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
 	if err != nil {
 		return err
+	}
+	err = sciSourceClient.PopulateAritcleItemTree(processor.ScienceSourceRecord)
+	if err != nil {
+	    return err
 	}
 
 	return nil

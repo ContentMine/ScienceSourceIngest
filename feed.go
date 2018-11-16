@@ -19,6 +19,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 )
 
 const PMCAPIURL string = "https://www.ebi.ac.uk/europepmc/webservices/rest"
@@ -94,4 +95,8 @@ func (paper Paper) WikiDataID() string {
 	}
 
 	return ""
+}
+
+func (paper Paper) PublicationDate() (time.Time, error) {
+    return time.Parse(time.RFC3339, paper.Date.Value)
 }
