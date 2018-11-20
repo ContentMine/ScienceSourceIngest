@@ -436,13 +436,13 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	if err != nil {
 		return err
 	}
-	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
-	if err != nil {
-		return err
-	}
 	err = sciSourceClient.PopulateAritcleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
 	    return err
+	}
+	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
+	if err != nil {
+		return err
 	}
 
 	return nil

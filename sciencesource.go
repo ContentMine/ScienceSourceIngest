@@ -29,7 +29,7 @@ import (
 type ScienceSourceAnnotation struct {
 	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
 	// wikibase item ID when we cache state to disk
-	Item wikibase.ItemPropertyType `json:"item" item:"annotation"`
+	wikibase.WikiBaseItemHeader `json:"item" item:"annotation"`
 
 	// These fields we know beforehand
 	TermFound         string    `json:"term" property:"term found"`
@@ -48,7 +48,7 @@ type ScienceSourceAnnotation struct {
 type ScienceSourceAnchorPoint struct {
 	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
 	// wikibase item ID when we cache state to disk
-	Item wikibase.ItemPropertyType `json:"item" item:"anchor point"`
+	wikibase.WikiBaseItemHeader `json:"item" item:"anchor point"`
 
 	// These fields we know beforehand
 	PrecedingPhrase     string    `json:"preceding_phrase" property:"preceding phrase"`
@@ -79,7 +79,7 @@ type ScienceSourceAnchorPoint struct {
 type ScienceSourceArticle struct {
 	// Exists partly to let us look up the item ID on sci source, and as a place to store the uploaded
 	// wikibase item ID when we cache state to disk
-	Item wikibase.ItemPropertyType `json:"item" item:"article"`
+	wikibase.WikiBaseItemHeader `json:"item" item:"article"`
 
 	// These fields we know beforehand
 	ScienceSourceArticleTitle string    `json:"science_source_title" property:"ScienceSource article title"`
@@ -201,31 +201,31 @@ func LoadScienceSourceArticle(filename string) (*ScienceSourceArticle, error) {
 func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticle) error {
 
 	// Create the node for the article in the wiki base if necessary
-	if len(article.Item) == 0 {
+	if len(article.WikiBaseItemHeader.ID) == 0 {
 		item_id, err := c.wikiBaseClient.CreateItemInstance("article instance")
 		if err != nil {
 			return err
 		}
-		article.Item = item_id
+		article.WikiBaseItemHeader.ID = item_id
 	}
 
 	// Create an item for all the anchors and their articles
 	for i := 0; i < len(article.Annotations); i++ {
 
-		if len(article.Annotations[i].Item) == 0 {
+		if len(article.Annotations[i].WikiBaseItemHeader.ID) == 0 {
 			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor instance")
 			if err != nil {
 				return err
 			}
-			article.Annotations[i].Item = item_id
+			article.Annotations[i].WikiBaseItemHeader.ID = item_id
 		}
 
-		if len(article.Annotations[i].Annotation.Item) == 0 {
+		if len(article.Annotations[i].Annotation.WikiBaseItemHeader.ID) == 0 {
 			item_id, err := c.wikiBaseClient.CreateItemInstance("annotation instance")
 			if err != nil {
 				return err
 			}
-			article.Annotations[i].Annotation.Item = item_id
+			article.Annotations[i].Annotation.WikiBaseItemHeader.ID = item_id
 		}
 	}
 
@@ -239,7 +239,7 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 	if len(article.Annotations) == 0 {
 		article.FollowingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
 	} else {
-		article.FollowingAnchorPoint = article.Annotations[0].Item
+		article.FollowingAnchorPoint = article.Annotations[0].WikiBaseItemHeader.ID
 	}
 
 	for i := 0; i < len(article.Annotations); i++ {
@@ -248,21 +248,21 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		article.Annotations[i].InstanceOf = c.wikiBaseClient.ItemMap["anchor point"]
 		article.Annotations[i].ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
 		if i != 0 {
-			article.Annotations[i].PrecedingAnchorPoint = article.Annotations[i-1].Item
+			article.Annotations[i].PrecedingAnchorPoint = article.Annotations[i-1].WikiBaseItemHeader.ID
 		} else {
 			article.Annotations[i].PrecedingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
 		}
 		if i != len(article.Annotations)-1 {
-			article.Annotations[i].FollowingAnchorPoint = article.Annotations[i+1].Item
+			article.Annotations[i].FollowingAnchorPoint = article.Annotations[i+1].WikiBaseItemHeader.ID
 		} else {
 			article.Annotations[i].FollowingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
 		}
-		article.Annotations[i].AnchorPoint = article.Item
-		article.Annotations[i].Anchors = article.Annotations[i].Annotation.Item
+		article.Annotations[i].AnchorPoint = article.WikiBaseItemHeader.ID
+		article.Annotations[i].Anchors = article.Annotations[i].Annotation.WikiBaseItemHeader.ID
 
 		// Patch annotation second
 		article.Annotations[i].Annotation.InstanceOf = c.wikiBaseClient.ItemMap["annotation"]
-		article.Annotations[i].Annotation.BasedOn = article.Annotations[i].Item
+		article.Annotations[i].Annotation.BasedOn = article.Annotations[i].WikiBaseItemHeader.ID
 	}
 
 	return nil
@@ -270,17 +270,17 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 
 func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
 
-    err := c.wikiBaseClient.UploadClaimsForItem(article.Item, *article)
+    err := c.wikiBaseClient.UploadClaimsForItem(article)
     if err != nil {
         return err
     }
 
 	for i := 0; i < len(article.Annotations); i++ {
-        err := c.wikiBaseClient.UploadClaimsForItem(article.Annotations[i].Item, article.Annotations[i])
+        err := c.wikiBaseClient.UploadClaimsForItem(&article.Annotations[i])
         if err != nil {
             return err
         }
-        err = c.wikiBaseClient.UploadClaimsForItem(article.Annotations[i].Annotation.Item, article.Annotations[i].Annotation)
+        err = c.wikiBaseClient.UploadClaimsForItem(&(article.Annotations[i].Annotation))
         if err != nil {
             return err
         }

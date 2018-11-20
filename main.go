@@ -30,7 +30,7 @@ var Version string
 // We could fire off 100 requests at once, but that's not being nice to
 // either the local machine or PMC's API, so we limite the number of
 // concurrent paper requests here
-const concurrencyLimit int = 5
+const concurrencyLimit int = 2
 
 func main() {
 
@@ -55,7 +55,7 @@ func main() {
 
 	// the SPARQL seems to have duplicates in, so let's check
 	library := make(map[string]Paper)
-	for _, paper := range feed.Results.Papers[0:1] {
+	for _, paper := range feed.Results.Papers[:1] {
 		if _, prs := library[paper.ID()]; prs == true {
 			log.Printf("Found a duplicate paper: %v", paper.ID())
 		} else {
