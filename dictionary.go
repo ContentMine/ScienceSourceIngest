@@ -21,7 +21,7 @@ import (
 	"path"
 	"path/filepath"
 
-	"github.com/mdales/ahocorasick"
+	"github.com/ContentMine/ahocorasick"
 )
 
 type DictionaryLog struct {

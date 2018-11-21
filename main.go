@@ -20,7 +20,7 @@ import (
 	"log"
 	"sync"
 
-	"github.com/mdales/wikibase"
+	"github.com/ContentMine/wikibase"
 )
 
 // These will be set by the build script to something meaningful

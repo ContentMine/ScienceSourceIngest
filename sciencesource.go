@@ -20,7 +20,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/mdales/wikibase"
+	"github.com/ContentMine/wikibase"
 )
 
 // Encoding of structures in json comes from data schema found here:
