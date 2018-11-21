@@ -98,5 +98,5 @@ func (paper Paper) WikiDataID() string {
 }
 
 func (paper Paper) PublicationDate() (time.Time, error) {
-    return time.Parse(time.RFC3339, paper.Date.Value)
+	return time.Parse(time.RFC3339, paper.Date.Value)
 }

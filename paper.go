@@ -162,13 +162,13 @@ func (processor PaperProcessor) fetchPaperSupplementaryFilesToDisk() error {
 
 func (processor PaperProcessor) populateScienceSourceArticle() (*ScienceSourceArticle, error) {
 
-    pubDate, err := processor.Paper.PublicationDate()
-    if err != nil {
-        return nil, err
-    }
+	pubDate, err := processor.Paper.PublicationDate()
+	if err != nil {
+		return nil, err
+	}
 
-    now := time.Now()
-    today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
+	now := time.Now()
+	today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
 
 	article := &ScienceSourceArticle{
 		WikiDataItemCode:          processor.Paper.WikiDataID(),
@@ -347,7 +347,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	if err != nil {
 		processor.ScienceSourceRecord, err = processor.populateScienceSourceArticle()
 		if err != nil {
-		    return err
+			return err
 		}
 
 		err = processor.fetchPaperTextToDisk()
@@ -438,7 +438,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	}
 	err = sciSourceClient.PopulateAritcleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
-	    return err
+		return err
 	}
 	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
 	if err != nil {
