@@ -219,6 +219,16 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		return err
 	}
 
+    // We need to ditch the '<!DOCTYPE html>' (15 characters) from the start of the XSLT
+    c := 0
+    for count := len("<!DOCTYPE html>"); count > 0; count -= c {
+        stash := make([]byte, count)
+        c, err = stdout.Read(stash)
+        if err != nil {
+            return err
+        }
+    }
+
 	_, copy_err := io.Copy(f, stdout)
 	if copy_err != nil {
 		return err
