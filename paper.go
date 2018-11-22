@@ -35,11 +35,10 @@ type PaperProcessor struct {
 }
 
 const HTMLHeader string = `{{articleheader
+| Wikidata_code = %s
 | title = %s
 | publication_date = %s
-| initial_author_first = %s
-| initial_author_last = %s
-| wikidata_code = %s
+| author1 = %s
 | Generator = %s/%s
 }}
 `
@@ -197,10 +196,10 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 	}
 
 	header := fmt.Sprintf(HTMLHeader,
+		processor.Paper.WikiDataID(),
 		processor.Paper.Title.Value,
 		processor.Paper.Date.Value,
-		firstName, surname,
-		processor.Paper.ItemLabel.Value,
+		fmt.Sprintf("%s %s", firstName, surname),
 		Remote, Version,
 	)
 
