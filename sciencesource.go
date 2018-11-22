@@ -38,6 +38,9 @@ type ScienceSourceAnnotation struct {
 	DictionaryName    string    `json:"dictionary" property:"dictionary name"`
 	TimeCode          time.Time `json:"time" property:"time code1"`
 
+	// These we only know after we've uploaded the article document
+	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
+
 	// These fields we know after we've created the anchor point item
 	BasedOn wikibase.ItemPropertyType `json:"based_on" property:"based on"` // Ref to article
 
@@ -53,8 +56,8 @@ type ScienceSourceAnchorPoint struct {
 	// These fields we know beforehand
 	PrecedingPhrase     string    `json:"preceding_phrase" property:"preceding phrase"`
 	FollowingPhrase     string    `json:"following_phrase" property:"following phrase"`
-	DistanceToPreceding int       `json:"preceding_distance" property:"distance to preceding"`
-	DistanceToFollowing int       `json:"following_distance" property:"distance to following"`
+	DistanceToPreceding *int      `json:"preceding_distance,omitempty" property:"distance to preceding"`
+	DistanceToFollowing *int      `json:"following_distance,omitempty" property:"distance to following"`
 	CharacterNumber     int       `json:"character" property:"character number"`
 	TimeCode            time.Time `json:"time" property:"time code1"`
 
@@ -68,7 +71,7 @@ type ScienceSourceAnchorPoint struct {
 	AnchorPoint wikibase.ItemPropertyType `json:"point" property:"anchor point in"` // Ref to article
 
 	// These we only know once we've uploaded all the annotations
-	PrecedingAnchorPoint wikibase.ItemPropertyType `json:"preceding_anchor" property:"preceding anchor point"` // Ref to anchor point/article
+	PrecedingAnchorPoint *wikibase.ItemPropertyType `json:"preceding_anchor,omitempty" property:"preceding anchor point"` // Ref to anchor point/article
 	FollowingAnchorPoint wikibase.ItemPropertyType `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
 	Anchors              wikibase.ItemPropertyType `json:"anchors" property:"anchors"`
 
@@ -88,8 +91,8 @@ type ScienceSourceArticle struct {
 	PublicationDate           time.Time `json:"publication_date" property:"publication date"`
 	TimeCode                  time.Time `json:"time" property:"time code1"`
 	CharacterNumber           int       `json:"character" property:"character number"` // always 0?
-	//PrecedingPhrase           string    `json:"preceding_phrase" property:"preceding phrase"`
-	//FollowingPhrase           string    `json:"following_phrase" property:"following phrase"`
+	PrecedingPhrase           *string    `json:"preceding_phrase,omitempty" property:"preceding phrase"`
+	FollowingPhrase           *string    `json:"following_phrase,omitempty" property:"following phrase"`
 
 	// These fields we only know from the science source instance
 	InstanceOf wikibase.ItemPropertyType `json:"instance_of" property:"instance of"`
@@ -248,9 +251,9 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		article.Annotations[i].InstanceOf = c.wikiBaseClient.ItemMap["anchor point"]
 		article.Annotations[i].ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
 		if i != 0 {
-			article.Annotations[i].PrecedingAnchorPoint = article.Annotations[i-1].ID
+			article.Annotations[i].PrecedingAnchorPoint = &article.Annotations[i-1].ID
 		} else {
-			article.Annotations[i].PrecedingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
+			article.Annotations[i].PrecedingAnchorPoint = nil
 		}
 		if i != len(article.Annotations)-1 {
 			article.Annotations[i].FollowingAnchorPoint = article.Annotations[i+1].ID
@@ -261,6 +264,7 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		article.Annotations[i].Anchors = article.Annotations[i].Annotation.ID
 
 		// Patch annotation second
+		article.Annotations[i].Annotation.ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
 		article.Annotations[i].Annotation.InstanceOf = c.wikiBaseClient.ItemMap["annotation"]
 		article.Annotations[i].Annotation.BasedOn = article.Annotations[i].ID
 	}

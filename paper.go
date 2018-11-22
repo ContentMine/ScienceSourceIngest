@@ -305,15 +305,6 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 	for i := 0; i < len(total_matches); i++ {
 		match := total_matches[i]
 
-		distanceToPreceding := 0
-		if i > 0 {
-			distanceToPreceding = match.Offset - total_matches[i-1].Offset
-		}
-		distanceToFollowing := 0
-		if i < (len(total_matches) - 1) {
-			distanceToFollowing = total_matches[i+1].Offset - match.Offset
-		}
-
 		now := time.Now()
 		today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
 
@@ -328,12 +319,19 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 		anchorPoint := ScienceSourceAnchorPoint{
 			PrecedingPhrase:     findPhrase(data, match.Offset, SearchDirectionBackward),
 			FollowingPhrase:     findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
-			DistanceToPreceding: distanceToPreceding,
-			DistanceToFollowing: distanceToFollowing,
 			CharacterNumber:     match.Offset,
 			TimeCode:            today,
 
 			Annotation: annotation,
+		}
+
+		if i > 0 {
+			distanceToPreceding := match.Offset - total_matches[i-1].Offset
+			anchorPoint.DistanceToPreceding = &distanceToPreceding
+		}
+		if i < (len(total_matches) - 1) {
+			distanceToFollowing := total_matches[i+1].Offset - match.Offset
+			anchorPoint.DistanceToFollowing = &distanceToFollowing
 		}
 
 		res[i] = anchorPoint
