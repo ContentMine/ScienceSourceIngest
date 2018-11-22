@@ -167,7 +167,7 @@ func (c *ScienceSourceClient) UploadPaper(article *ScienceSourceArticle, htmlFil
 
 	article.PageID = page_id
 
-	return nil
+	return c.wikiBaseClient.ProtectPageByID(article.PageID)
 }
 
 // Article helper functions
