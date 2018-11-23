@@ -72,8 +72,8 @@ type ScienceSourceAnchorPoint struct {
 
 	// These we only know once we've uploaded all the annotations
 	PrecedingAnchorPoint *wikibase.ItemPropertyType `json:"preceding_anchor,omitempty" property:"preceding anchor point"` // Ref to anchor point/article
-	FollowingAnchorPoint wikibase.ItemPropertyType `json:"following_anchor" property:"following anchor point"` // Ref to anchor point/terminus
-	Anchors              wikibase.ItemPropertyType `json:"anchors" property:"anchors"`
+	FollowingAnchorPoint wikibase.ItemPropertyType  `json:"following_anchor" property:"following anchor point"`           // Ref to anchor point/terminus
+	Anchors              wikibase.ItemPropertyType  `json:"anchors" property:"anchors"`
 
 	// Internal program management
 	Annotation ScienceSourceAnnotation `json:"annotation"`
@@ -85,14 +85,15 @@ type ScienceSourceArticle struct {
 	wikibase.ItemHeader `json:"item" item:"article"`
 
 	// These fields we know beforehand
-	ScienceSourceArticleTitle string    `json:"science_source_title" property:"ScienceSource article title"`
-	WikiDataItemCode          string    `json:"wikidata" property:"Wikidata item code"`
-	ArticleTextTitle          string    `json:"title" property:"article text title"`
-	PublicationDate           time.Time `json:"publication_date" property:"publication date"`
-	TimeCode                  time.Time `json:"time" property:"time code1"`
-	CharacterNumber           int       `json:"character" property:"character number"` // always 0?
-	PrecedingPhrase           *string    `json:"preceding_phrase,omitempty" property:"preceding phrase"`
-	FollowingPhrase           *string    `json:"following_phrase,omitempty" property:"following phrase"`
+	ScienceSourceArticleTitle string                     `json:"science_source_title" property:"ScienceSource article title"`
+	WikiDataItemCode          string                     `json:"wikidata" property:"Wikidata item code"`
+	ArticleTextTitle          string                     `json:"title" property:"article text title"`
+	PublicationDate           time.Time                  `json:"publication_date" property:"publication date"`
+	TimeCode                  time.Time                  `json:"time" property:"time code1"`
+	CharacterNumber           int                        `json:"character" property:"character number"` // always 0?
+	PrecedingPhrase           *string                    `json:"preceding_phrase,omitempty" property:"preceding phrase"`
+	FollowingPhrase           *string                    `json:"following_phrase,omitempty" property:"following phrase"`
+	PrecedingAnchorPoint      *wikibase.ItemPropertyType `json:"preceding_anchor,omitempty" property:"preceding anchor point"` // Always nil on article
 
 	// These fields we only know from the science source instance
 	InstanceOf wikibase.ItemPropertyType `json:"instance_of" property:"instance of"`

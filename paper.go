@@ -37,7 +37,7 @@ type PaperProcessor struct {
 const HTMLHeader string = `{{articleheader
 | Wikidata_code = %s
 | title = %s
-| publication_date = %s
+| publication_date = %04d-%02d-%02d
 | author1 = %s
 | Generator = %s/%s
 }}
@@ -47,7 +47,7 @@ const HTMLFooter string = `{{articlefooter
 | pmcid = %s
 | license = %s
 | main_subject = %s
-| batch_date = %d-%d-%d
+| batch_date = %04d-%02d-%02d
 }}
 `
 
@@ -195,10 +195,14 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		firstName = FirstAuthor.GivenNames // TODO!
 	}
 
+    pub_date, err := processor.Paper.PublicationDate()
+    if err != nil {
+        return err
+    }
 	header := fmt.Sprintf(HTMLHeader,
 		processor.Paper.WikiDataID(),
 		processor.Paper.Title.Value,
-		processor.Paper.Date.Value,
+		pub_date.Year(), pub_date.Month(), pub_date.Day(),
 		fmt.Sprintf("%s %s", firstName, surname),
 		Remote, Version,
 	)
@@ -218,15 +222,15 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		return err
 	}
 
-    // We need to ditch the '<!DOCTYPE html>' (15 characters) from the start of the XSLT
-    c := 0
-    for count := len("<!DOCTYPE html>"); count > 0; count -= c {
-        stash := make([]byte, count)
-        c, err = stdout.Read(stash)
-        if err != nil {
-            return err
-        }
-    }
+	// We need to ditch the '<!DOCTYPE html>' (15 characters) from the start of the XSLT
+	c := 0
+	for count := len("<!DOCTYPE html>"); count > 0; count -= c {
+		stash := make([]byte, count)
+		c, err = stdout.Read(stash)
+		if err != nil {
+			return err
+		}
+	}
 
 	_, copy_err := io.Copy(f, stdout)
 	if copy_err != nil {
@@ -317,10 +321,10 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 		}
 
 		anchorPoint := ScienceSourceAnchorPoint{
-			PrecedingPhrase:     findPhrase(data, match.Offset, SearchDirectionBackward),
-			FollowingPhrase:     findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
-			CharacterNumber:     match.Offset,
-			TimeCode:            today,
+			PrecedingPhrase: findPhrase(data, match.Offset, SearchDirectionBackward),
+			FollowingPhrase: findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
+			CharacterNumber: match.Offset,
+			TimeCode:        today,
 
 			Annotation: annotation,
 		}
