@@ -24,7 +24,6 @@ import (
 	"os/exec"
 	"path"
 	"sort"
-	"strings"
 	"time"
 )
 
@@ -114,7 +113,7 @@ func findPhrase(prose []byte, startOffset int, direction SearchDirection) string
 		startOffset, targetOffset = targetOffset, startOffset
 	}
 
-	return strings.TrimSpace(string(prose[startOffset:targetOffset]))
+	return string(prose[startOffset:targetOffset])
 }
 
 // Computed properties
