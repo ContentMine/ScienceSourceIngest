@@ -38,14 +38,14 @@ type ScienceSourceAnnotation struct {
 	DictionaryName    string    `json:"dictionary" property:"dictionary name"`
 	TimeCode          time.Time `json:"time" property:"time code1"`
 
+	// These fields we only know from the science source instance
+	InstanceOf wikibase.ItemPropertyType `json:"instance_of" property:"instance of"`
+
 	// These we only know after we've uploaded the article document
 	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
 
 	// These fields we know after we've created the anchor point item
-	BasedOn wikibase.ItemPropertyType `json:"based_on" property:"based on"` // Ref to article
-
-	// These fields we only know from the science source instance
-	InstanceOf wikibase.ItemPropertyType `json:"instance_of" property:"instance of"`
+	BasedOn wikibase.ItemPropertyType `json:"based_on" property:"based on,omitoncreate"` // Ref to article
 }
 
 type ScienceSourceAnchorPoint struct {
@@ -68,12 +68,12 @@ type ScienceSourceAnchorPoint struct {
 	ScienceSourceArticleTitle string `json:"science_source_title" property:"ScienceSource article title"`
 
 	// These fields we know after we've created the article item
-	AnchorPoint wikibase.ItemPropertyType `json:"point" property:"anchor point in"` // Ref to article
+	AnchorPoint wikibase.ItemPropertyType `json:"point" property:"anchor point in,omitoncreate"` // Ref to article
 
 	// These we only know once we've uploaded all the annotations
-	PrecedingAnchorPoint *wikibase.ItemPropertyType `json:"preceding_anchor,omitempty" property:"preceding anchor point"` // Ref to anchor point/article
-	FollowingAnchorPoint wikibase.ItemPropertyType  `json:"following_anchor" property:"following anchor point"`           // Ref to anchor point/terminus
-	Anchors              wikibase.ItemPropertyType  `json:"anchors" property:"anchors"`
+	PrecedingAnchorPoint *wikibase.ItemPropertyType `json:"preceding_anchor,omitempty" property:"preceding anchor point,omitoncreate"` // Ref to anchor point/article
+	FollowingAnchorPoint wikibase.ItemPropertyType  `json:"following_anchor" property:"following anchor point,omitoncreate"`           // Ref to anchor point/terminus
+	Anchors              wikibase.ItemPropertyType  `json:"anchors" property:"anchors,omitoncreate"`
 
 	// Internal program management
 	Annotation ScienceSourceAnnotation `json:"annotation"`
@@ -102,7 +102,7 @@ type ScienceSourceArticle struct {
 	PageID int `json:"page_id" property:"page ID"`
 
 	// These we only know once we've uploaded all the annotations
-	FollowingAnchorPoint wikibase.ItemPropertyType `json:"following_anchor" property:"following anchor point"`
+	FollowingAnchorPoint wikibase.ItemPropertyType `json:"following_anchor" property:"following anchor point,omitoncreate"`
 
 	// Internal program management
 	Annotations []ScienceSourceAnchorPoint `json:"annotations"`
@@ -155,7 +155,7 @@ func (c *ScienceSourceClient) UploadPaper(article *ScienceSourceArticle, htmlFil
 		return err
 	}
 
-	page_id, upload_error := c.wikiBaseClient.CreateArticle(article.ScienceSourceArticleTitle, string(data))
+	page_id, upload_error := c.wikiBaseClient.CreateOrUpdateArticle(article.ScienceSourceArticleTitle, string(data))
 	if upload_error != nil {
 
 		// if we get a page exists error then ignore for now and move on, as we assume the title is unique
@@ -205,31 +205,31 @@ func LoadScienceSourceArticle(filename string) (*ScienceSourceArticle, error) {
 func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticle) error {
 
 	// Create the node for the article in the wiki base if necessary
+	article.InstanceOf = c.wikiBaseClient.ItemMap["article"]
 	if len(article.ID) == 0 {
-		item_id, err := c.wikiBaseClient.CreateItemInstance("article instance")
+		err := c.wikiBaseClient.CreateItemInstance("article instance", article)
 		if err != nil {
 			return err
 		}
-		article.ID = item_id
 	}
 
 	// Create an item for all the anchors and their articles
 	for i := 0; i < len(article.Annotations); i++ {
+		article.Annotations[i].InstanceOf = c.wikiBaseClient.ItemMap["anchor point"]
 
 		if len(article.Annotations[i].ID) == 0 {
-			item_id, err := c.wikiBaseClient.CreateItemInstance("anchor instance")
+			err := c.wikiBaseClient.CreateItemInstance("anchor instance", &(article.Annotations[i]))
 			if err != nil {
 				return err
 			}
-			article.Annotations[i].ID = item_id
 		}
 
+		article.Annotations[i].Annotation.InstanceOf = c.wikiBaseClient.ItemMap["annotation"]
 		if len(article.Annotations[i].Annotation.ID) == 0 {
-			item_id, err := c.wikiBaseClient.CreateItemInstance("annotation instance")
+			err := c.wikiBaseClient.CreateItemInstance("annotation instance", &(article.Annotations[i].Annotation))
 			if err != nil {
 				return err
 			}
-			article.Annotations[i].Annotation.ID = item_id
 		}
 	}
 
@@ -239,7 +239,6 @@ func (c *ScienceSourceClient) CreateArticleItemTree(article *ScienceSourceArticl
 func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArticle) error {
 
 	// Patch the article first
-	article.InstanceOf = c.wikiBaseClient.ItemMap["article"]
 	if len(article.Annotations) == 0 {
 		article.FollowingAnchorPoint = c.wikiBaseClient.ItemMap["terminus"]
 	} else {
@@ -249,8 +248,6 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 	for i := 0; i < len(article.Annotations); i++ {
 
 		// Patch anchor point first
-		article.Annotations[i].InstanceOf = c.wikiBaseClient.ItemMap["anchor point"]
-		article.Annotations[i].ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
 		if i != 0 {
 			article.Annotations[i].PrecedingAnchorPoint = &article.Annotations[i-1].ID
 		} else {
@@ -265,8 +262,6 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 		article.Annotations[i].Anchors = article.Annotations[i].Annotation.ID
 
 		// Patch annotation second
-		article.Annotations[i].Annotation.ScienceSourceArticleTitle = article.ScienceSourceArticleTitle
-		article.Annotations[i].Annotation.InstanceOf = c.wikiBaseClient.ItemMap["annotation"]
 		article.Annotations[i].Annotation.BasedOn = article.Annotations[i].ID
 	}
 

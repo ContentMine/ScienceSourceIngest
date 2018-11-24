@@ -288,12 +288,12 @@ func (processor PaperProcessor) processXMLToText() error {
 	return nil
 }
 
-func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
-	articleTitle string, journalTitle string) ([]ScienceSourceAnchorPoint, error) {
+func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary, article *ScienceSourceArticle,
+	articleTitle string, journalTitle string) error {
 
 	data, err := ioutil.ReadFile(processor.targetTextFileName())
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	total_matches := make([]DictionaryMatch, 0)
@@ -318,6 +318,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			WikiDataItemCode:  match.Entry.Identifiers.WikiData,
 			LengthOfTermFound: len(match.Entry.Term),
 			TimeCode:          today,
+			ScienceSourceArticleTitle: article.ScienceSourceArticleTitle,
 		}
 
 		anchorPoint := ScienceSourceAnchorPoint{
@@ -325,6 +326,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 			FollowingPhrase: findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
 			CharacterNumber: match.Offset,
 			TimeCode:        today,
+			ScienceSourceArticleTitle: article.ScienceSourceArticleTitle,
 
 			Annotation: annotation,
 		}
@@ -341,7 +343,8 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary,
 		res[i] = anchorPoint
 	}
 
-	return res, nil
+    article.Annotations = res
+	return nil
 }
 
 // main entry point
@@ -386,13 +389,11 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 			return err
 		}
 
-		annotations, aerr := processor.findAnnotations(dictionaries, openXMLdoc.Title(),
-			openXMLdoc.JournalTitle())
-		if aerr != nil {
-			return aerr
+		err = processor.findAnnotations(dictionaries, processor.ScienceSourceRecord,
+		    openXMLdoc.Title(), openXMLdoc.JournalTitle())
+		if err != nil {
+			return err
 		}
-
-		processor.ScienceSourceRecord.Annotations = annotations
 
 		// Save the record with annotations
 		err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
@@ -442,6 +443,9 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		return err
 	}
 
+
+    log.Printf("Reconsiling paper %s", processor.Paper.ID())
+
 	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
 	err = sciSourceClient.ReconsileArticleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
@@ -455,6 +459,8 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	if err != nil {
 		return err
 	}
+
+    log.Printf("Completed paper %s", processor.Paper.ID())
 
 	return nil
 }

@@ -55,7 +55,7 @@ func main() {
 
 	// the SPARQL seems to have duplicates in, so let's check
 	library := make(map[string]Paper)
-	for _, paper := range feed.Results.Papers[:1] {
+	for _, paper := range feed.Results.Papers[2:3] {
 		if _, prs := library[paper.ID()]; prs == true {
 			log.Printf("Found a duplicate paper: %v", paper.ID())
 		} else {
