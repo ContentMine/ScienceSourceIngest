@@ -127,20 +127,20 @@ func NewScienceSourceClient(oauthInfo wikibase.OAuthInformation, urlbase string)
 
 func (c *ScienceSourceClient) GetConfigurationFromServer() error {
 
-	err := c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceArticle{})
+	err := c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceArticle{}, true)
 	if err != nil {
 		return err
 	}
-	err = c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceAnchorPoint{})
+	err = c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceAnchorPoint{}, true)
 	if err != nil {
 		return err
 	}
-	err = c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceAnnotation{})
+	err = c.wikiBaseClient.MapPropertyAndItemConfiguration(ScienceSourceAnnotation{}, true)
 	if err != nil {
 		return err
 	}
 
-	err = c.wikiBaseClient.MapItemConfigurationByLabel("terminus")
+	err = c.wikiBaseClient.MapItemConfigurationByLabel("terminus", true)
 	if err != nil {
 		return err
 	}
@@ -270,17 +270,17 @@ func (c *ScienceSourceClient) ReconsileArticleItemTree(article *ScienceSourceArt
 
 func (c *ScienceSourceClient) PopulateAritcleItemTree(article *ScienceSourceArticle) error {
 
-	err := c.wikiBaseClient.UploadClaimsForItem(article)
+	err := c.wikiBaseClient.UploadClaimsForItem(article, false)
 	if err != nil {
 		return err
 	}
 
 	for i := 0; i < len(article.Annotations); i++ {
-		err := c.wikiBaseClient.UploadClaimsForItem(&article.Annotations[i])
+		err := c.wikiBaseClient.UploadClaimsForItem(&article.Annotations[i], false)
 		if err != nil {
 			return err
 		}
-		err = c.wikiBaseClient.UploadClaimsForItem(&(article.Annotations[i].Annotation))
+		err = c.wikiBaseClient.UploadClaimsForItem(&(article.Annotations[i].Annotation), false)
 		if err != nil {
 			return err
 		}

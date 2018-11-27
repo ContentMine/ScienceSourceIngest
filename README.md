@@ -119,7 +119,7 @@ Wikibase Configuration
 
 The ingest process assumes certain Items and Properties are defined in your wikibase instance before you run the tool. Note that the labels are important, as that's what the tool uses rather than hard coded Item or Property IDs that will invariable change between servers (e.g., test, staging, production). Label lookup is case sensitive, and they must be unique labels for their kind on the server.
 
-A future improvement would be to have these automatically created, but for now it must be done by hand.
+If the below item and property definitions are not found on the server then they will be automatically created.
 
 Items
 -----
