@@ -29,6 +29,7 @@ import (
 
 type PaperProcessor struct {
 	Paper               Paper
+	XSLTProcPath        string
 	TargetDirectory     string
 	ScienceSourceRecord *ScienceSourceArticle
 }
@@ -194,10 +195,10 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 		firstName = FirstAuthor.GivenNames // TODO!
 	}
 
-    pub_date, err := processor.Paper.PublicationDate()
-    if err != nil {
-        return err
-    }
+	pub_date, err := processor.Paper.PublicationDate()
+	if err != nil {
+		return err
+	}
 	header := fmt.Sprintf(HTMLHeader,
 		processor.Paper.WikiDataID(),
 		processor.Paper.Title.Value,
@@ -209,7 +210,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) e
 	f.Write([]byte(header))
 
 	cmd := exec.Cmd{
-		Path: "/usr/bin/xsltproc",
+		Path: processor.XSLTProcPath,
 		Args: []string{"xsltproc", "jats-parsoid.xsl", processor.targetXMLFileName()},
 	}
 
@@ -312,19 +313,19 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary, artic
 		today := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, time.UTC)
 
 		annotation := ScienceSourceAnnotation{
-			TermFound:         match.Entry.Term,
-			DictionaryName:    match.Dictionary.Identifier,
-			WikiDataItemCode:  match.Entry.Identifiers.WikiData,
-			LengthOfTermFound: len(match.Entry.Term),
-			TimeCode:          today,
+			TermFound:                 match.Entry.Term,
+			DictionaryName:            match.Dictionary.Identifier,
+			WikiDataItemCode:          match.Entry.Identifiers.WikiData,
+			LengthOfTermFound:         len(match.Entry.Term),
+			TimeCode:                  today,
 			ScienceSourceArticleTitle: article.ScienceSourceArticleTitle,
 		}
 
 		anchorPoint := ScienceSourceAnchorPoint{
-			PrecedingPhrase: findPhrase(data, match.Offset, SearchDirectionBackward),
-			FollowingPhrase: findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
-			CharacterNumber: match.Offset,
-			TimeCode:        today,
+			PrecedingPhrase:           findPhrase(data, match.Offset, SearchDirectionBackward),
+			FollowingPhrase:           findPhrase(data, match.Offset+len(match.Entry.Term), SearchDirectionForward),
+			CharacterNumber:           match.Offset,
+			TimeCode:                  today,
 			ScienceSourceArticleTitle: article.ScienceSourceArticleTitle,
 
 			Annotation: annotation,
@@ -342,7 +343,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary, artic
 		res[i] = anchorPoint
 	}
 
-    article.Annotations = res
+	article.Annotations = res
 	return nil
 }
 
@@ -389,7 +390,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		}
 
 		err = processor.findAnnotations(dictionaries, processor.ScienceSourceRecord,
-		    openXMLdoc.Title(), openXMLdoc.JournalTitle())
+			openXMLdoc.Title(), openXMLdoc.JournalTitle())
 		if err != nil {
 			return err
 		}
@@ -442,8 +443,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		return err
 	}
 
-
-    log.Printf("Reconsiling paper %s", processor.Paper.ID())
+	log.Printf("Reconsiling paper %s", processor.Paper.ID())
 
 	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
 	err = sciSourceClient.ReconsileArticleItemTree(processor.ScienceSourceRecord)
@@ -459,7 +459,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		return err
 	}
 
-    log.Printf("Completed paper %s", processor.Paper.ID())
+	log.Printf("Completed paper %s", processor.Paper.ID())
 
 	return nil
 }

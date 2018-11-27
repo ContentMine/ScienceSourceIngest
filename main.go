@@ -30,7 +30,7 @@ var Version string
 // We could fire off 100 requests at once, but that's not being nice to
 // either the local machine or PMC's API, so we limite the number of
 // concurrent paper requests here
-const concurrencyLimit int = 2
+const concurrencyLimit int = 1
 
 func main() {
 
@@ -39,11 +39,13 @@ func main() {
 	var dictionaries_path string
 	var url_base string
 	var oauth_tokens_path string
+	var xslt_proc_path string
 	flag.StringVar(&feed_path, "feed", "", "JSON feed of papers, required")
 	flag.StringVar(&target_path, "output", ".", "Directory to store the results, required")
 	flag.StringVar(&dictionaries_path, "dictionaries", "", "Directory of dictionaries to load.")
 	flag.StringVar(&url_base, "urlbase", "http://localhost:8181", "Base URL for science source.")
 	flag.StringVar(&oauth_tokens_path, "oauth", "oauth.json", "JSON file with oauth credentials in.")
+	flag.StringVar(&xslt_proc_path, "xsltproc", "/usr/bin/xsltproc", "Location off xsltproc tool.")
 	flag.Parse()
 
 	log.Printf("Feed to parse: %s", feed_path)
@@ -55,7 +57,7 @@ func main() {
 
 	// the SPARQL seems to have duplicates in, so let's check
 	library := make(map[string]Paper)
-	for _, paper := range feed.Results.Papers[2:3] {
+	for _, paper := range feed.Results.Papers {
 		if _, prs := library[paper.ID()]; prs == true {
 			log.Printf("Found a duplicate paper: %v", paper.ID())
 		} else {
@@ -104,7 +106,11 @@ func main() {
 			}()
 			log.Printf("Process paper %s", to_process.ID())
 
-			var processor = PaperProcessor{Paper: to_process, TargetDirectory: target_path}
+			var processor = PaperProcessor{
+				Paper:           to_process,
+				TargetDirectory: target_path,
+				XSLTProcPath:    xslt_proc_path,
+			}
 			err := processor.ProcessPaper(dictionaries, sciSourceClient)
 			if err != nil {
 				log.Printf("Failed to process paper %s: %v", to_process.ID(), err)
