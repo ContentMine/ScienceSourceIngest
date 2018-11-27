@@ -114,6 +114,50 @@ Please note that uploading data in bulk can be slow - annotations require a lot 
 
 If you re-run the program with the same input feed and output directory then it should safely resume upload from where it left off and not re-upload anything it had already uploaded.
 
+Wikibase Configuration
+===========
+
+The ingest process assumes certain Items and Properties are defined in your wikibase instance before you run the tool. Note that the labels are important, as that's what the tool uses rather than hard coded Item or Property IDs that will invariable change between servers (e.g., test, staging, production). Label lookup is case sensitive, and they must be unique labels for their kind on the server.
+
+A future improvement would be to have these automatically created, but for now it must be done by hand.
+
+Items
+-----
+
+Label | Example instance
+------|------------------
+anchor point | https://sciencesource.wmflabs.org/wiki/Item:Q2
+article | https://sciencesource.wmflabs.org/wiki/Item:Q4
+annotation | https://sciencesource.wmflabs.org/wiki/Item:Q5
+terminus | http://sciencesource.wmflabs.org/wiki/Item:Q6
+
+Properties
+---------
+
+Label | Type | Example instance
+------|------|-----------------
+Wikidata item code | External identifier | https://sciencesource.wmflabs.org/wiki/Property:P2
+instance of | Item | https://sciencesource.wmflabs.org/wiki/Property:P3
+subclass of | Item | https://sciencesource.wmflabs.org/wiki/Property:P4
+preceding anchor point | Item | https://sciencesource.wmflabs.org/wiki/Property:P6
+following anchor point | Item | https://sciencesource.wmflabs.org/wiki/Property:P7
+distance to preceding | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P8
+distance to following | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P9
+character number | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P10
+article text title | String | https://sciencesource.wmflabs.org/wiki/Property:P11
+anchor point in | Item | https://sciencesource.wmflabs.org/wiki/Property:P12
+preceding phrase | String | https://sciencesource.wmflabs.org/wiki/Property:P13
+following phrase | String | https://sciencesource.wmflabs.org/wiki/Property:P14
+term found | String | https://sciencesource.wmflabs.org/wiki/Property:P15
+dictionary name | String | https://sciencesource.wmflabs.org/wiki/Property:P16
+publication date | Point in time | https://sciencesource.wmflabs.org/wiki/Property:P17
+length of term found | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P18
+based on | Item | https://sciencesource.wmflabs.org/wiki/Property:P19
+ScienceSource article title | String | https://sciencesource.wmflabs.org/wiki/Property:P20
+time code1 | Point in time | https://sciencesource.wmflabs.org/wiki/Property:P22
+anchors | Item | https://sciencesource.wmflabs.org/wiki/Property:P24
+page ID | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P25
+
 
 Building
 ===========
