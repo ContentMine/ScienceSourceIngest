@@ -1,7 +1,6 @@
 Tool for importing openXML format papers into a wikibase instance
 ============
 
-
 This tool takes a JSON list of papers that are both on WikiData and PubMedCentral, processes them into HTML and does simple dictionary based text mining, the output of which is pushed to a wikibase instance.
 
 This tool requires you have xsltproc installed to let it process the openXML papers.
@@ -114,6 +113,16 @@ Usage notes
 Please note that uploading data in bulk can be slow - annotations require a lot of items to be created and properties to be set in the Wikibase instance, and each call will take around a second to complete on a remote server, which means papers can take a minute or so to upload fully.
 
 If you re-run the program with the same input feed and output directory then it should safely resume upload from where it left off and not re-upload anything it had already uploaded.
+
+
+Building
+===========
+
+ScienceSourceIngest is written in Go, and built with Make. If your system has both the Go toolchain installed and Make, then you should be able to just run:
+
+```make```
+
+And the tool will be built.
 
 
 License
