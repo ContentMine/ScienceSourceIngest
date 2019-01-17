@@ -20,9 +20,9 @@ import (
 	"os"
 	"strings"
 	"time"
-)
 
-const PMCAPIURL string = "https://www.ebi.ac.uk/europepmc/webservices/rest"
+	europmc "github.com/ContentMine/go-europmc"
+)
 
 type Header struct {
 	Vars []string `json:"vars"`
@@ -80,11 +80,11 @@ func (paper Paper) String() string {
 }
 
 func (paper Paper) FullTextURL() string {
-	return fmt.Sprintf("%s/PMC%s/fullTextXML", PMCAPIURL, paper.ID())
+    return europmc.FullTextURL(paper.ID())
 }
 
 func (paper Paper) SupplementaryFilesURL() string {
-	return fmt.Sprintf("%s/PMC%s/supplementaryFiles", PMCAPIURL, paper.ID())
+    return europmc.SupplementaryFilesURL(paper.ID())
 }
 
 func (paper Paper) WikiDataID() string {
