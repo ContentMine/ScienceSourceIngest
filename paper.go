@@ -25,6 +25,8 @@ import (
 	"path"
 	"sort"
 	"time"
+
+	europmc "github.com/ContentMine/go-europmc"
 )
 
 type PaperProcessor struct {
@@ -180,7 +182,7 @@ func (processor PaperProcessor) populateScienceSourceArticle() (*ScienceSourceAr
 	return article, nil
 }
 
-func (processor PaperProcessor) processXMLToHTML(FirstAuthor *ContributorName) error {
+func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.ContributorName) error {
 
 	f, err := os.Create(processor.targetHTMLFileName())
 	if err != nil {
@@ -374,7 +376,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 			return err
 		}
 
-		openXMLdoc, xml_err := LoadPaperXMLFromFile(processor.targetXMLFileName())
+		openXMLdoc, xml_err := europmc.LoadPaperXMLFromFile(processor.targetXMLFileName())
 		if xml_err != nil {
 			return xml_err
 		}
