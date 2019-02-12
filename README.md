@@ -5,7 +5,7 @@ This tool takes a JSON list of papers that are both on WikiData and PubMedCentra
 
 This tool requires you have xsltproc installed to let it process the openXML papers.
 
-Run ./ingest -help to see the command options and details. There are six things you need to provide typically (explained in more detail below):
+Run `./bin/ScienceSourceIngest -help` to see the command options and details. There are six things you need to provide typically (explained in more detail below):
 
 * -feed [file path] - this is a JSON file that contains a list of the papers as fetched from WikiData
 * -output [directory path] - this is a directory where the tool will store its working state
@@ -162,11 +162,25 @@ page ID | Quantity | https://sciencesource.wmflabs.org/wiki/Property:P25
 Building
 ===========
 
-ScienceSourceIngest is written in Go, and built with Make. If your system has both the Go toolchain installed and Make, then you should be able to just run:
+ScienceSourceIngest is written in Go, and built with Make. You also need to set GOPATH to the directory of the project. If you're in the root directory of this source tree then you can simply type:
 
-```make```
+```
+export GOPATH=$PWD
+```
 
-And the tool will be built.
+You will need to fetch the libraries that this depends on, which you can do with:
+
+```
+make get
+```
+
+Then you should be able to just run:
+
+```
+make
+```
+
+And the tool will be built and put into the $GOPATH/bin directory.
 
 
 License
@@ -178,4 +192,9 @@ This software is copyright Content Mine Ltd 2018, and released under the Apache 
 Dependencies
 ============
 
-Relies on https://github.com/ContentMine/wikibase
+Relies on
+
+* https://github.com/ContentMine/wikibase
+* https://github.com/ContentMine/go-europmc
+* https://github.com/ContentMine/ahocorasick
+* https://github.com/mrjones/oauth

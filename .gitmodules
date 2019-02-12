@@ -1,0 +1,12 @@
+[submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/go-europmc"]
+	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/go-europmc
+	url = git@github.com:ContentMine/go-europmc.git
+[submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/wikibase"]
+	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/wikibase
+	url = git@github.com:ContentMine/wikibase.git
+[submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/ahocorasick"]
+	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/ContentMine/ahocorasick
+	url = git@github.com:ContentMine/ahocorasick.git
+[submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/mrjones/oauth"]
+	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/mrjones/oauth
+	url = https://github.com/mrjones/oauth.git
