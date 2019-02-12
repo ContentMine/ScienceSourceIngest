@@ -10,3 +10,6 @@
 [submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/mrjones/oauth"]
 	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/mrjones/oauth
 	url = https://github.com/mrjones/oauth.git
+[submodule "src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/hashicorp/errwrap"]
+	path = src/github.com/ContentMine/ScienceSourceIngest/vendor/github.com/hashicorp/errwrap
+	url = https://github.com/hashicorp/errwrap.git

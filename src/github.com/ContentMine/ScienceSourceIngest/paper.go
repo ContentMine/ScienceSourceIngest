@@ -26,6 +26,7 @@ import (
 	"sort"
 	"time"
 
+    "github.com/hashicorp/errwrap"
 	europmc "github.com/ContentMine/go-europmc"
 )
 
@@ -186,7 +187,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 
 	f, err := os.Create(processor.targetHTMLFileName())
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error creating HTML target file: {{err}}", err)
 	}
 	defer f.Close()
 
@@ -199,7 +200,7 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 
 	pub_date, err := processor.Paper.PublicationDate()
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error finding publication date: {{err}}", err)
 	}
 	header := fmt.Sprintf(HTMLHeader,
 		processor.Paper.WikiDataID(),
@@ -209,7 +210,10 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 		Remote, Version,
 	)
 
-	f.Write([]byte(header))
+	_, err = f.Write([]byte(header))
+	if err != nil {
+		return errwrap.Wrapf("Error when writing header: {{err}}", err)
+	}
 
 	cmd := exec.Cmd{
 		Path: processor.XSLTProcPath,
@@ -218,10 +222,10 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error generating file handles for xsltproc: {{err}}", err)
 	}
 	if err := cmd.Start(); err != nil {
-		return err
+		return errwrap.Wrapf("Error running xsltproc: {{err}}", err)
 	}
 
 	// We need to ditch the '<!DOCTYPE html>' (15 characters) from the start of the XSLT
@@ -230,17 +234,17 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 		stash := make([]byte, count)
 		c, err = stdout.Read(stash)
 		if err != nil {
-			return err
+		    return errwrap.Wrapf("Error trying to find DOCTYPE tag: {{err}}", err)
 		}
 	}
 
 	_, copy_err := io.Copy(f, stdout)
 	if copy_err != nil {
-		return err
+		return errwrap.Wrapf("Error copying file contents: {{err}}", err)
 	}
 
 	if err := cmd.Wait(); err != nil {
-		return err
+		return errwrap.Wrapf("Error when waiting for xsltproc: {{err}}", err)
 	}
 
 	now := time.Now()
@@ -252,7 +256,10 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 	)
 
 	// write the footer
-	f.Write([]byte(footer))
+	_, err = f.Write([]byte(footer))
+	if err != nil {
+		return errwrap.Wrapf("Error when writing footer: {{err}}", err)
+	}
 
 	return nil
 }
@@ -261,7 +268,7 @@ func (processor PaperProcessor) processXMLToText() error {
 
 	f, err := os.Create(processor.targetTextFileName())
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error generating text mining target file: {{err}}", err)
 	}
 	defer f.Close()
 
@@ -272,19 +279,19 @@ func (processor PaperProcessor) processXMLToText() error {
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error generating file handles for xsltproc: {{err}}", err)
 	}
 	if err := cmd.Start(); err != nil {
-		return err
+		return errwrap.Wrapf("Error running xsltproc: {{err}}", err)
 	}
 
 	_, copy_err := io.Copy(f, stdout)
 	if copy_err != nil {
-		return err
+		return errwrap.Wrapf("Error copying file contents: {{err}}", err)
 	}
 
 	if err := cmd.Wait(); err != nil {
-		return err
+		return errwrap.Wrapf("Error when waiting for xsltproc: {{err}}", err)
 	}
 
 	return nil
@@ -295,7 +302,7 @@ func (processor PaperProcessor) findAnnotations(dictionaries []Dictionary, artic
 
 	data, err := ioutil.ReadFile(processor.targetTextFileName())
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Error reading text mining file: {{err}}", err)
 	}
 
 	total_matches := make([]DictionaryMatch, 0)
@@ -355,7 +362,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 
 	err := processor.createFolderIfRequired()
 	if err != nil {
-		return err
+		return errwrap.Wrapf("Failed to create folder for paper: {{err}}", err)
 	}
 
 	// Have we already processed this paper?
@@ -363,53 +370,53 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	if err != nil {
 		processor.ScienceSourceRecord, err = processor.populateScienceSourceArticle()
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to populate record: {{err}}", err)
 		}
 
 		err = processor.fetchPaperTextToDisk()
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to fetch paper text: {{err}}", err)
 		}
 
 		err = processor.fetchPaperSupplementaryFilesToDisk()
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to fetch paper supplementary files: {{err}}", err)
 		}
 
 		openXMLdoc, xml_err := europmc.LoadPaperXMLFromFile(processor.targetXMLFileName())
 		if xml_err != nil {
-			return xml_err
+			return errwrap.Wrapf("Failed to load paper XML: {{err}}", err)
 		}
 
 		err = processor.processXMLToHTML(openXMLdoc.FirstAuthor())
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to convert paper to HTML: {{err}}", err)
 		}
 
 		err = processor.processXMLToText()
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to generate text for mining: {{err}}", err)
 		}
 
 		err = processor.findAnnotations(dictionaries, processor.ScienceSourceRecord,
 			openXMLdoc.Title(), openXMLdoc.JournalTitle())
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Error when finding annotations: {{err}}", err)
 		}
 
 		// Save the record with annotations
 		err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to save paper record: {{err}}", err)
 		}
 	}
 	log.Printf("Count %d", len(processor.ScienceSourceRecord.Annotations))
 
 	if processor.ScienceSourceRecord.PageID == 0 {
 		log.Printf("Uploading paper %s", processor.Paper.ID())
-		upload_err := sciSourceClient.UploadPaper(processor.ScienceSourceRecord, processor.targetHTMLFileName())
-		if upload_err != nil {
-			return upload_err
+		err = sciSourceClient.UploadPaper(processor.ScienceSourceRecord, processor.targetHTMLFileName())
+		if err != nil {
+			return errwrap.Wrapf("Failed to upload paper: {{err}}", err)
 		}
 
 		log.Printf("Page ID is %d", processor.ScienceSourceRecord.PageID)
@@ -417,7 +424,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		// Save the record again as it'll have an updated Page ID
 		err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
 		if err != nil {
-			return err
+			return errwrap.Wrapf("Failed to re-save paper record: {{err}}", err)
 		}
 	}
 
@@ -439,7 +446,7 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 		if err != nil && upload_err != nil {
 			err = fmt.Errorf("Failed to both create wikibase items (%v) and save state (%v)", upload_err, err)
 		} else if upload_err != nil {
-			err = upload_err
+			err = errwrap.Wrapf("Failed to create article tree: {{err}}", upload_err)
 		}
 
 		return err
@@ -450,15 +457,15 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 	// If we got here then now we have an item for every part of the data structure, so upload all the properties.
 	err = sciSourceClient.ReconsileArticleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
-		return err
+			return errwrap.Wrapf("Error when reconciling article tree: {{err}}", err)
 	}
 	err = sciSourceClient.PopulateAritcleItemTree(processor.ScienceSourceRecord)
 	if err != nil {
-		return err
+			return errwrap.Wrapf("Error when populating article tree: {{err}}", err)
 	}
 	err = processor.ScienceSourceRecord.Save(processor.targetScienceSourceStateFileName())
 	if err != nil {
-		return err
+			return errwrap.Wrapf("Failed on final save of paper record: {{err}}", err)
 	}
 
 	log.Printf("Completed paper %s", processor.Paper.ID())
