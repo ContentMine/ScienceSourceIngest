@@ -27,7 +27,7 @@ import (
 type DictionaryLog struct {
 	Type  string `json:"type"`
 	Query string `json:"query"`
-	Time  int    `json:"time"`
+	Time  int64  `json:"time"`
 }
 
 type DictionaryEntryIdentifiers struct {
