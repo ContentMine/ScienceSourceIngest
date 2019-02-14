@@ -16,8 +16,9 @@ package main
 
 import (
 	"flag"
-	//    "fmt"
+	"fmt"
 	"log"
+	"os"
 	"sync"
 
 	"github.com/ContentMine/wikibase"
@@ -31,6 +32,8 @@ var Version string
 // either the local machine or PMC's API, so we limite the number of
 // concurrent paper requests here
 const concurrencyLimit int = 1
+
+var xsl_file_list = []string{"jats-text.xsl", "jats-parsoid.xsl", "jats-common.xsl"}
 
 func main() {
 
@@ -53,6 +56,14 @@ func main() {
 	feed, err := LoadFeedFromFile(feed_path)
 	if err != nil {
 		panic(err)
+	}
+
+	// Check we can find the required XSL files up front, just to ensure better error reporting
+	// to the humans.
+	for _, xsl_file := range(xsl_file_list) {
+        if _, err := os.Stat(xsl_file); os.IsNotExist(err) {
+            panic(fmt.Errorf("XSL file %s does not exist.", xsl_file))
+        }
 	}
 
 	// the SPARQL seems to have duplicates in, so let's check
