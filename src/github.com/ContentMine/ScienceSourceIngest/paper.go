@@ -222,7 +222,11 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
-		return errwrap.Wrapf("Error generating file handles for xsltproc: {{err}}", err)
+		return errwrap.Wrapf("Error generating output handle for xsltproc: {{err}}", err)
+	}
+	stderr, err := cmd.StderrPipe()
+	if err != nil {
+	    return errwrap.Wrapf("Error generating error handle for xsltproc: {{err}}", err)
 	}
 	if err := cmd.Start(); err != nil {
 		return errwrap.Wrapf("Error running xsltproc: {{err}}", err)
@@ -234,17 +238,21 @@ func (processor PaperProcessor) processXMLToHTML(FirstAuthor *europmc.Contributo
 		stash := make([]byte, count)
 		c, err = stdout.Read(stash)
 		if err != nil {
-		    return errwrap.Wrapf("Error trying to find DOCTYPE tag: {{err}}", err)
+		    errprose, _ := ioutil.ReadAll(stderr)
+		    errtext := fmt.Sprintf("Error typing to find DOCTYPE tag: {{err}}. Error output from xsltproc: %s", errprose)
+		    return errwrap.Wrapf(errtext, err)
 		}
 	}
 
-	_, copy_err := io.Copy(f, stdout)
-	if copy_err != nil {
+	_, err = io.Copy(f, stdout)
+	if err != nil {
 		return errwrap.Wrapf("Error copying file contents: {{err}}", err)
 	}
 
 	if err := cmd.Wait(); err != nil {
-		return errwrap.Wrapf("Error when waiting for xsltproc: {{err}}", err)
+	    errprose, _ := ioutil.ReadAll(stderr)
+		errtext := fmt.Sprintf("Error when waiting for xsltproc: {{err}}. Error output from xsltproc: %s", errprose)
+		return errwrap.Wrapf(errtext, err)
 	}
 
 	now := time.Now()
@@ -281,6 +289,10 @@ func (processor PaperProcessor) processXMLToText() error {
 	if err != nil {
 		return errwrap.Wrapf("Error generating file handles for xsltproc: {{err}}", err)
 	}
+	stderr, err := cmd.StderrPipe()
+	if err != nil {
+	    return errwrap.Wrapf("Error generating error handle for xsltproc: {{err}}", err)
+	}
 	if err := cmd.Start(); err != nil {
 		return errwrap.Wrapf("Error running xsltproc: {{err}}", err)
 	}
@@ -291,7 +303,9 @@ func (processor PaperProcessor) processXMLToText() error {
 	}
 
 	if err := cmd.Wait(); err != nil {
-		return errwrap.Wrapf("Error when waiting for xsltproc: {{err}}", err)
+	    errprose, _ := ioutil.ReadAll(stderr)
+		errtext := fmt.Sprintf("Error when waiting for xsltproc: {{err}}. Error output from xsltproc: %s", errprose)
+		return errwrap.Wrapf(errtext, err)
 	}
 
 	return nil

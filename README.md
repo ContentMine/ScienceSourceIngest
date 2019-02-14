@@ -110,6 +110,8 @@ The annotations that ScienceSourceIngest finds in the papers are based on the di
 Usage notes
 -----------
 
+The program requires the three xsl files (`jats-html.xsl`, `jats-parsoid.xsl`, and `jats-common.xsl`) in the current working directory.
+
 Please note that uploading data in bulk can be slow - annotations require a lot of items to be created and properties to be set in the Wikibase instance, and each call will take around a second to complete on a remote server, which means papers can take a minute or so to upload fully.
 
 If you re-run the program with the same input feed and output directory then it should safely resume upload from where it left off and not re-upload anything it had already uploaded.
