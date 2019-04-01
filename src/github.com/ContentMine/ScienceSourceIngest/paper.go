@@ -392,10 +392,10 @@ func (processor PaperProcessor) ProcessPaper(dictionaries []Dictionary, sciSourc
 			return errwrap.Wrapf("Failed to fetch paper text: {{err}}", err)
 		}
 
-		err = processor.fetchPaperSupplementaryFilesToDisk()
+		/*err = processor.fetchPaperSupplementaryFilesToDisk()
 		if err != nil {
 			return errwrap.Wrapf("Failed to fetch paper supplementary files: {{err}}", err)
-		}
+		}*/
 
 		openXMLdoc, xml_err := europmc.LoadPaperXMLFromFile(processor.targetXMLFileName())
 		if xml_err != nil {
